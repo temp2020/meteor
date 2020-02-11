@@ -1,0 +1,30 @@
+<ion-popover-view style="height: 164px; max-width: 210px;">
+  <ion-content scroll="false">
+    <ul class="list no-margin {{ 'LAYOUT.STYLE' | translate }}">
+      <div class="item click" ng-click="links.hide()">
+        <a 
+          style="text-decoration: none; color: #444;" 
+          ng-href="mailto:team45@vastershops.com?subject={{ 'LABEL.REPORT_LISTING' | translate }}"
+          target="_blank">
+          {{ 'LABEL.REPORT_LISTING' | translate }}
+        </a>
+      </div>
+      <div class="item click" ng-click="links.hide()">
+        <a 
+          style="text-decoration: none; color: #444;" 
+          ng-href="mailto:team45@vastershops.com?subject={{ 'LABEL.REPORT_USER' | translate }}"
+          target="_blank">
+          {{ 'LABEL.REPORT_USER' | translate }}
+        </a>
+      </div>
+      <div class="item click" ng-click="links.hide()">
+        <a 
+          style="text-decoration: none; color: #444;" 
+          ng-href="mailto:team45@vastershops.com?subject={{ 'LABEL.REPORT_STORE' | translate }}"
+          target="_blank">
+          {{ 'LABEL.REPORT_STORE' | translate }}
+        </a>
+      </div>
+    </ul>
+  </ion-content>
+</ion-popover-view>

@@ -1,0 +1,91 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+    <ion-nav-title>
+        <h1 class="title {{ 'LAYOUT.TITLE_STYLE' | translate }}" >
+          {{ OFFERS_RECEIVED | translate }}
+        </h1>
+    </ion-nav-title>
+
+    <ion-content>
+
+      <ion-refresher
+          pulling-text="{{ 'LABEL.REFRESH' | translate }}"
+          on-refresh="refresh()"
+          disable-pulling-rotation="true" >
+      </ion-refresher>
+
+      <div class="list">
+
+        <div
+          name="offers"
+          ng-repeat="offer in vm.offers"
+          ng-click="vm.go(offer.listingID)"
+          class="{{ 'LAYOUT.STYLE' | translate }} offer-list item item-avatar click">
+
+          <img ng-src="{{ vm.profileImage(offer.offerBy) }}">
+              
+          <p>
+            {{offer.buyer}}
+            &nbsp;&nbsp;
+            <i class="far fa-thumbs-up"></i> {{ vm.goodRating(offer.offerBy) }}
+            &nbsp;
+            <i class="far fa-thumbs-down"></i> {{ vm.badRating(offer.offerBy) }}  
+          </p>
+
+          <h2 class="offer-title">
+            {{ vm.listingTitle(offer.listingID) }}
+          </h2>
+
+          <h3
+            ng-if="vm.priceAmount( offer.offerAmount, offer.currency )"
+            class="offer-amount"
+            translate="LABEL.CURRENCY_OFFER"
+            translate-values="{ 
+              price: vm.priceAmount( offer.offerAmount, offer.currency ), 
+              currency: vm.baseCurrency 
+            }">
+          </h3>
+          
+          <span class="offerlist-date">
+            {{offer.offerDate | calendar}}
+          </span>
+
+        </div>
+        
+      </div>
+      
+      <ion-spinner id="content-main" ng-show="vm.offers.length === 0 && !vm.contentLoaded" class="search-spinner" icon="spiral"></ion-spinner>
+      
+      <div ng-show="vm.offers.length === 0 && vm.contentLoaded" class="item no-posts">
+        <h3 id="content-main" translate="{{ vm.noPosts }}"></h3>
+      </div>
+
+      
+      <ion-infinite-scroll
+          ng-if="(vm.options.loaded + vm.options.skip) < vm.allposts && vm.paginate === false"
+          spinner="spiral"
+          distance="70%"
+          on-infinite="loadMore()">
+      </ion-infinite-scroll>
+
+      <div ng-if="vm.paginate === true;" class="button-bar button-small button-light">
+        <a
+          ng-disabled="vm.options.skip === 0"
+          ng-click="vm.back()"
+          class="button icon-left ion-ios-arrow-back button-paginate"
+          translate >
+          LABEL.BACK
+        </a>
+        <a
+          ng-disabled="( vm.options.skip + vm.options.loaded ) >= vm.allposts"
+          ng-click="vm.next()"
+          class="button icon-right ion-ios-arrow-forward button-paginate"
+          translate >
+          LABEL.NEXT
+        </a>
+      </div>
+
+    </ion-content>
+    <ion-footer-bar class="tabs-striped tabs-bottom tabs-light no-padding shop-footer">
+      <tabs-bottom></tabs-bottom>
+    </ion-footer-bar>
+  </ion-view>

@@ -1,0 +1,98 @@
+<ion-view class="{{ 'LAYOUT.NEW_LISTING_STYLE' | translate }}">
+  
+        <ion-nav-bar class="bar-light new-listing-header-bar">
+          <ion-nav-back-button
+            nav-direction="back" 
+            class="button button-clear button-icon ion-android-arrow-back">
+          </ion-nav-back-button>
+        </ion-nav-bar>
+            
+        <ion-nav-title>
+            <h1 class="title"></h1>      
+        </ion-nav-title>
+            
+        <ion-nav-buttons side="left">
+            
+          <button
+            class="button button-clear button-large button-dark new-listing-header-btn"
+            translate>
+            LABEL.MORE_DETAILS
+          </button>
+            
+        </ion-nav-buttons>
+            
+        <ion-nav-buttons side="right">
+            
+          <button 
+            class="button button-clear button-large button-calm new-listing-header-btn"
+            ng-click="vm.next()"
+            translate>
+            LABEL.NEXT
+          </button>
+            
+        </ion-nav-buttons>
+              
+          <ion-content class="white">
+            <div class="list no-margin">
+      
+              <div class="item item-input new-listing-field">
+                <textarea 
+                  ng-model="vm.details"
+                  row="3"
+                  msd-elastic
+                  style="resize: none; height: 30px; width: 100%; overflow:hidden;"
+                  translate
+                  translate-attr-placeholder="LABEL.MORE_DETAILS_FIELD">
+                </textarea>
+              </div>
+            
+              <div class="item no-border new-listing-description">
+                <p translate>
+                  DESCRIPTION.MORE_DETAILS.LINE_1
+                </p>
+                <br>
+                <p translate>
+                  DESCRIPTION.MORE_DETAILS.LINE_2
+                </p>
+                <br>
+                <p translate>
+                  DESCRIPTION.MORE_DETAILS.LINE_3
+                </p>
+                <br>
+                <p translate>
+                  DESCRIPTION.MORE_DETAILS.LINE_4
+                </p>
+              </div>
+            
+            </div>
+        </ion-content>
+
+        <ion-footer-bar class="bar-light new-listing-header-bar">
+
+                <button
+                  ng-click="vm.cancel()"
+                  class="button button-clear button-large button-dark new-listing-header-btn">
+                  <i class="icon ion-close"></i>
+                  &nbsp;
+                  {{ 'LABEL.CANCEL' | translate }}
+                </button>
+          
+                <button
+                  ng-click="vm.save(false)"
+                  ng-class="vm.language !== 'ar' ? 'save-button' : 'save-button-rtl'"
+                  class="button button-clear button-large button-dark new-listing-header-btn">
+                  {{ 'LABEL.SAVE' | translate }}
+                </button>
+          
+                <h1 class="title"></h1>
+               
+                <button
+                  class="button button-clear button-large button-calm new-listing-header-btn"
+                  ng-class="vm.language !== 'ar' ? '' : 'rtl'"
+                  ng-click="vm.save(true)"
+                  translate>
+                  LABEL.PUBLISH
+                </button>
+          
+        </ion-footer-bar>              
+</ion-view>

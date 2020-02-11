@@ -1,0 +1,10 @@
+<div style="top: -4px;" class="tabs">
+  <a ng-class="viewChat === true ? 'active' :''"  class="tab-item" ng-click="tab.selectChat()">
+    <i style="display: inline;" class="far fa-comments" aria-hidden="true"></i>
+    {{ 'LABEL.CHAT' | translate }}
+  </a>
+  <a ng-class="viewChat === false ? 'active' :''" class="tab-item" ng-click="tab.selectDetails()">
+    <i style="display: inline;" class="fas fa-info-circle" aria-hidden="true"></i>
+    {{ 'LABEL.CONFIRMATION' | translate }}
+  </a>
+</div>

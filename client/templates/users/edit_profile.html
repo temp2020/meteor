@@ -1,0 +1,181 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+  <ion-nav-title>
+      <h1 class="title {{ 'LAYOUT.TITLE_STYLE' | translate }}">{{ 'LABEL.PAGE-TITLE_MY_SETTINGS' | translate }}</h1>
+  </ion-nav-title>
+    <ion-content>
+        <div class="list no-margin edit-profile">
+            <div class="item" style="text-align: center;">
+                <div
+                    ngf-drop ngf-select
+                    ng-if="vm.isAndroid4 === false"
+                    id="canvas"
+                    ngf-change="vm.uploadImg($files)"
+                    ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
+                    ngf-drop-available="false" >
+                    <img
+                        ng-if="vm.preview === null && !vm.profileImg"
+                        class="edit-profileimg"
+                        ng-src="{{ vm.profile.profImage }}"
+                        id="content-main" >
+                    <img
+                        ng-if="vm.preview === null && vm.profileImg"
+                        class="edit-profileimg"
+                        ng-src="{{ vm.profileImg.link() }}"
+                        id="content-main" >
+                    <img
+                        ng-if="vm.preview != null"
+                        class="edit-profileimg"
+                        ng-src="{{vm.preview}}" >
+                    <p translate>LABEL.CHANGE_PHOTO</p>
+                </div>
+                <div
+                  id="canvas"
+                  ng-click="vm.addFile()"
+                  ng-if="vm.isAndroid4 === true">
+                    <img
+                        ng-if="vm.preview === null && !vm.profileImg"
+                        class="edit-profileimg"
+                        ng-src="{{ vm.profile.profImage }}"
+                        id="content-main" >
+                    <img
+                        ng-if="vm.preview === null && vm.profileImg"
+                        class="edit-profileimg"
+                        ng-src="{{ vm.profileImg.link() }}"
+                        id="content-main" >
+                    <img
+                        ng-if="vm.preview != null"
+                        class="edit-profileimg"
+                        ng-src="{{vm.preview}}" >
+                    <p translate>LABEL.CHANGE_PHOTO</p>
+                </div>
+            </div>
+            <label class="item item-input">
+                
+                <span class="input-label">
+                    <i class="far fa-envelope" aria-hidden="true"></i>
+                    {{ 'LABEL.EMAIL' | translate }}
+                </span>
+
+                <input type="email" ng-model="vm.email" readonly>
+            </label>
+            <label class="item item-input">
+                
+                <span ng-class="noName === true ? 'required' : ''" class="input-label">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                    {{ 'LABEL.USERNAME' | translate }}
+                </span>
+
+                <input type="text" ng-model="vm.profile.profName">
+
+            </label>
+            <label class="item item-input">
+                <span class="input-label">
+                    <i class="fab fa-gg" aria-hidden="true"></i>
+                    {{ 'LABEL.MY_CURRENCY' | translate }}
+                </span>
+                <input
+                      style="background-color: #fff;"
+                      class="click"
+                      type="text"
+                      ng-click="vm.showCurrencies()"
+                      ng-model="vm.profile.currency"
+                      translate
+                      translate-attr-placeholder="LABEL.SELECT_CURRENCY"
+                      readonly >
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">
+                    <i class="icon ion-images"></i> 
+                    {{ 'LABEL.MY_PACK' | translate }}
+                </span>
+                <input
+                      style="background-color: #fff;"
+                      class="click"
+                      type="text"
+                      ui-sref="app.packs"
+                      ng-model="vm.mypack"
+                      translate
+                      translate-attr-placeholder="LABEL.SELECT_PACKS"
+                      readonly >
+            </label>
+
+            <div ng-show="vm.hasUpload === true || vm.upload != null" class="item edit-profile-button">
+                <button ng-click="vm.removeImg()" class="button button-clear button-assertive assertive icon-left ion-android-person" translate>
+                    LABEL.REMOVE_PHOTO
+                </button>
+            </div>
+            <div ng-if="hasPassword === true;" class="item edit-profile-button">
+                <button nav-direction="enter" ui-sref="app.account" class="button button-clear button-light button-custom icon-left ion-android-lock" translate>
+                    LABEL.CHANGE_PASSWORD
+                </button>
+            </div>
+            <div class="item edit-profile-button">
+                <button ng-click="menu.showLanguage()" class="button button-clear button-light button-custom icon-left">
+                    <i class="fas fa-lg fa-language"></i>
+                    {{ 'LABEL.CHANGE_LANGUAGE' | translate }}
+                </button>
+            </div>
+            <div class="item edit-profile-button">
+                <button ng-click="vm.getLocation()" class="button button-clear button-light button-custom icon-left ion-location" translate>
+                    LABEL.GET_LOCATION
+                </button>
+            </div>
+            <label class="item item-input">
+                <span class="input-label">
+                    <i class="far fa-compass" aria-hidden="true"></i>
+                    {{ 'LABEL.AREA' | translate }}
+                </span>
+                <input
+                    style="background-color: #fff;"
+                    class="click"
+                    type="text"
+                    ng-click="vm.getLocation()"
+                    ng-model="vm.profile.location.city"
+                    translate
+                    translate-attr-placeholder="LABEL.SELECT_AREA"
+                    readonly >
+            </label>
+            <label class="item item-input">
+                
+                <span class="input-label">
+                    <i class="far fa-map" aria-hidden="true"></i>
+                    {{ 'LABEL.REGION' | translate }}
+                </span>
+                <input
+                    style="background-color: #fff;"
+                    class="click"
+                    type="text"
+                    ng-click="vm.getLocation()"
+                    ng-model="vm.profile.location.region"
+                    translate
+                    translate-attr-placeholder="LABEL.SELECT_REGION"
+                    readonly >
+            </label>
+            <label class="item item-input">
+                <span class="input-label">
+                    <i class="fas fa-globe" aria-hidden="true"></i>
+                    {{ 'LABEL.COUNTRY' | translate }}
+                </span>
+                <input
+                    style="background-color: #fff;"
+                    class="click"
+                    type="text"
+                    ng-click="vm.getLocation()"
+                    translate
+                    translate-attr-placeholder="LABEL.SELECT_COUNTRY"
+                    ng-model="vm.profile.location.country"
+                    readonly >
+            </label>
+
+            <div class="padding">
+                <button ng-click="vm.update()" class="button button-block button-light button-custom" translate>
+                    LABEL.UPDATE_PROFILE_OR_STORE
+                </button>
+                <button ng-click="vm.logout()" class="button button-block button-clear button-light button-custom">
+                  <i class="icon ion-log-out"></i> {{ 'LABEL.LOGOUT' | translate }}
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

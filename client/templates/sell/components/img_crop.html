@@ -1,0 +1,79 @@
+<ion-modal-view class="full-modal" style="background-color: #101010;">
+
+  <ion-header-bar class="bar-light new-listing-header-bar">
+    
+    <button
+      ng-if="vm.language !== 'ar'" 
+      ng-click="cancelImg()"
+      class="button button-clear button-large button-dark new-listing-header-btn">
+      <i ng-if="vm.language !== 'ar'" class="icon ion-close"></i>
+      &nbsp;
+      {{ 'LABEL.CROP' | translate }}
+    </button>
+
+    <button
+      ng-if="vm.language === 'ar'" 
+      class="button button-clear button-large button-calm new-listing-header-btn"
+      ng-click="uploadImg()"
+      translate>
+      LABEL.NEXT
+    </button>
+
+     <h1 class="title"></h1>
+     
+     <button
+       ng-if="vm.language !== 'ar'" 
+       class="button button-clear button-large button-calm new-listing-header-btn"
+       ng-click="uploadImg()"
+       translate>
+       LABEL.NEXT
+     </button>
+
+     <button
+       ng-if="vm.language === 'ar'" 
+       ng-click="cancelImg()"
+       class="button button-clear button-large button-dark new-listing-header-btn">
+       {{ 'LABEL.CROP' | translate }}
+       &nbsp;
+       <i ng-if="vm.language === 'ar'" class="icon ion-close"></i>
+     </button>
+
+  </ion-header-bar>
+  
+  <ion-header-bar class="bar-dark bar-subheader no-padding" style="text-align: center; background-color: #101010;">
+    <div class="row" style="margin: auto; max-width: 436px;">
+      <button class="button button-clear button-large button-icon icon ion-minus col col-33" ng-click="zoomOut()"></button>
+      <button class="button button-clear button-large button-icon icon ion-plus col col-33" ng-click="zoomIn()"></button>
+      <button class="button button-clear button-large button-icon icon ion-android-refresh col col-33" ng-click="rotate()"></button>
+    </div>
+  </ion-header-bar>
+
+    <ion-content class="crop-modal">
+      <div class="crop-area">
+        <img id="newUpload" ng-src="{{ newImg }}">
+      </div>
+    </ion-content>
+
+    <!--
+    <ion-footer-bar align-title="left" class="button-bar footer-prod footer-upload">
+      <div class="button-bar {{ 'LAYOUT.STYLE' | translate }}">
+        <button
+            ng-click="cancelImg()"
+            class="button button-light button-outline"
+            style="font-size: 14px; padding: 0px;" >
+
+          <i style="display: inline-block;" class="fas fa-times fa-lg"></i>
+          <p class="prod-footer-label" translate>LABEL.CANCEL</p>
+        </button>
+        <button
+            class="button button-light"
+            ng-click="uploadImg()"
+            style="font-size: 14px; padding: 0px;" >
+            
+          <i style="display: inline-block;" class="far fa-image fa-lg"></i>
+          <p class="prod-footer-label" translate>LABEL.SAVE</p>
+        </button>
+      </div>
+    </ion-footer-bar>
+    -->
+</ion-modal-view>

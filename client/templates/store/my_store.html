@@ -1,0 +1,65 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}" view-title="">       
+  <ion-nav-title>
+      <h1 class="title {{ 'LAYOUT.TITLE_STYLE' | translate }}">{{ 'LABEL.MY_STORE' | translate }}</h1>
+  </ion-nav-title> 
+  
+  <ion-nav-buttons side="left">
+    <button 
+      ng-if="vm.language === 'ar'" 
+      class="button button-icon button-clear ion-android-more-vertical"
+      ng-click="links.show($event)">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+    <button 
+      ng-if="vm.language !== 'ar'" 
+      class="button button-icon button-clear ion-android-more-vertical"
+      ng-click="links.show($event)">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content>
+
+    <div ng-if="!vm.store || (vm.store && !vm.store.active)" class="empty-page">
+      <h3>{{ 'LABEL.MY_STORE' | translate }}</h3>
+      <p>
+        {{ 'LABEL.NO_MY_STORE' | translate }}
+      </p>
+    </div>
+
+    <div ng-if="vm.store && vm.store.active" class="list card">
+
+      <div class="item store-title">
+        <h1 class="title">{{ vm.store.name }} </h1>
+      </div>
+    
+      <div class="item item-body no-padding">
+
+        <img class="full-image" ng-src="{{ vm.store.imageLink }}">
+
+        <p 
+          ng-bind-html="vm.description(vm.store.description)" 
+          class="padding">
+        </p>
+
+      </div>
+
+      <div
+        class="item positive" 
+        style="text-align: center;">
+
+        <div class="row no-padding">
+
+          <a style="text-align: left" class="col col-50 no-padding click">See The Stats</a>
+
+          <a style="text-align: right" class="col col-50 no-padding click">Promote</a>
+
+        </div>
+        
+      </div>
+      
+    </div>
+
+  </ion-content>
+</ion-view>

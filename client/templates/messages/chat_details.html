@@ -1,0 +1,78 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+    <ion-nav-title>
+        <h1 class="title {{ 'LAYOUT.TITLE_STYLE' | translate }}">{{ 'LABEL.CONFIRMATION' | translate }}</h1>
+    </ion-nav-title>  
+  <ion-header-bar class="tabs-striped tabs-top tabs-light bar-subheader no-padding">
+    <chats></chats>
+  </ion-header-bar>
+  <ion-content style="background-color: #fff;">
+    <div class="padding" style="border: none;">
+      <div class="{{ 'LAYOUT.STYLE' | translate }} item item-avatar no-border no-margin">
+        <img
+            ng-if="vm.otherUser.profImageID === null"
+            class="click"
+            ui-sref="app.seller({ profileId: vm.otherUser._id })"
+            ng-src="{{ vm.otherUser.profImage }}" >
+        <img
+            ng-if="vm.otherUser.profImageID != null"
+            class="click"
+            ui-sref="app.seller({ profileId: vm.otherUser._id })"
+            ng-src="{{ vm.userImg.link() }}" >
+        <h2 class="click" ui-sref="app.seller({ profileId: vm.otherUser._id })" style="font-size: 16px; position: relative; top: 8px;">
+          {{ vm.otherUser.profName }}
+        </h2>
+      </div>
+      <div class="item-image">
+        <img
+            ng-if="vm.uploadImg"
+            style="width: 60%;"
+            ng-src="{{ vm.uploadImg.link() }}"
+            id="content-main" >
+      </div>
+      <br >
+      <div style="text-align: center;">
+        <h4 class="click">{{vm.chat.prodName}}</h4>
+        <h5 ng-if="vm.priceAmount( vm.chat.agreedPrice, vm.chat.currency )">
+          {{ 'LABEL.AGREED' | translate }}: 
+          <span             
+            translate="LABEL.CURRENCY" 
+            translate-values="{ price: vm.priceAmount( vm.chat.agreedPrice, vm.chat.currency ), currency: vm.baseCurrency }">
+          </span>
+        </h5>
+      </div>
+      <br >
+      <button
+          ng-click="vm.itemSold()"
+          ng-disabled="vm.listing.sold === true || vm.listing.active === false"
+          ng-if="vm.listing.sold != true && vm.listing.listedBy === vm.thisUser"
+          class="button button-block button-light button-custom" translate>
+        LABEL.CONFIRM_SOLD
+      </button>
+      <button
+          ng-disabled="vm.listing.listedBy != vm.thisUser"
+          ng-if="vm.listing.sold != true && vm.listing.listedBy != vm.thisUser"
+          class="button button-block button-clear button-balanced chat-info" translate>
+        LABEL.ITEM_AVAILABLE
+      </button>
+      <button
+          id="sold"
+          ng-disabled="vm.listing.sold === true"
+          ng-if="vm.listing.sold === true"
+          class="button button-block button-clear button-assertive chat-info-sold" translate>
+        LABEL.ITEM_SOLD
+      </button>
+      <button
+          ng-click="vm.cancel()"
+          ng-if="vm.listing.sold === false && vm.chat.buyerActive === true && vm.chat.sellerActive === true"
+          class="button button-block button-light button-outline button-custom" translate>
+        LABEL.LEAVE
+      </button>
+      <button
+          ng-click="vm.cancel()"
+          ng-if="vm.chat.buyerActive === false || vm.chat.sellerActive === false || vm.listing.sold === true "
+          class="button button-block button-light button-outline button-custom" translate>
+        LABEL.CLOSE
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

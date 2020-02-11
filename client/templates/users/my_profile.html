@@ -1,0 +1,85 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+  <ion-nav-title>
+    <h1 class="title {{ 'LAYOUT.TITLE_STYLE' | translate }}">{{ 'LABEL.MY_PROFILE' | translate }}</h1>      
+  </ion-nav-title>      
+    <ion-content>
+      <ion-refresher
+          pulling-text="{{ 'LABEL.REFRESH' | translate }}"
+          on-refresh="refresh()"
+          disable-pulling-rotation="true" >
+      </ion-refresher>
+      <!-- Profile -->
+      <div class="profile-content" >
+        <img
+            ng-if="!menu.myprofile.profImageID"
+            class="profile-image"
+            ng-src="{{ menu.myprofile.profImage }}"
+            id="content-main" >
+        <img
+            ng-if="menu.myprofile.profImageID"
+            class="profile-image"
+            ng-src="{{ menu.profileImg.link() }}"
+            id="content-main" >
+
+        <div class="{{ 'LAYOUT.PROFILESTYLE' | translate }}">
+          <h4 class="profile-name">
+            {{menu.myprofile.profName}}
+          </h4>
+          <br >
+          <span class="profile-location">
+            <i class="icon ion-location"></i> {{ vm.location(menu.myprofile.location) }}
+          </span>
+          <br >
+          <span class="profile-rating">
+            <i class="far fa-thumbs-up"></i> {{menu.myprofile.goodRating}}
+            &nbsp;
+            <i class="far fa-thumbs-down"></i> {{menu.myprofile.badRating}}
+          </span>
+        </div>
+      </div>
+      <button
+          nav-direction="enter"
+          style="text-align: center; background-color: #FFFFFF; margin-top: 0px; margin-bottom: 10px;"
+          ui-sref="app.editprofile"
+          class="button button-full button-clear button-light button-custom button-myprofile" >
+        <i class="icon ion-gear-b"></i>&nbsp;
+        {{ 'LABEL.ACCOUNT_SETTINGS' | translate }}
+      </button>
+        <!-- Feedback -->
+      <div class="list no-margin">
+        <div ng-repeat="post in vm.feedback" class="item item-avatar">
+          <img
+              ng-if="vm.feedbackBy(post.postBy).profImageID === null"
+              class="click"
+              ui-sref="app.seller({ profileId: vm.feedbackBy(post.postBy)._id })"
+              ng-src="{{ vm.feedbackBy(post.postBy).profImage }}" >
+          <img
+              ng-if="vm.feedbackBy(post.postBy).profImageID != null"
+              class="click"
+              ui-sref="app.seller({ profileId: vm.feedbackBy(post.postBy)._id })"
+              ng-src="{{ vm.postbyImg(post.postBy).link() }}" >
+
+          <h2 class="click" ui-sref="app.seller({ profileId: vm.feedbackBy(post.postBy)._id })" style="font-size: 14px;">
+            {{post.postName}}
+            &nbsp;&nbsp;
+            <i ng-if="post.goodRating === true" style="font-size: 18px;" class="far fa-thumbs-up"></i>
+            <i ng-if="post.goodRating === false" style="font-size: 18px;" class="far fa-thumbs-down"></i>
+          </h2>
+          <span class="feedback-date"> {{post.postDate | calendar}} </span>
+          <p ng-bind-html="vm.review(post._id)" class="feedback-text"></p>
+        </div>
+        <div ng-if="vm.feedback.length === 0" class="item no-posts">
+          <h3 translate="{{ vm.noFeedback }}"></h3>
+        </div>
+      </div>
+      <ion-infinite-scroll
+          ng-if="vm.loaded < vm.allfeedback"
+          spinner="spiral"
+          distance="1%"
+          on-infinite="loadMore()">
+      </ion-infinite-scroll>
+    </ion-content>
+    <ion-footer-bar class="tabs-striped tabs-bottom tabs-light no-padding shop-footer">
+        <tabs-bottom></tabs-bottom>
+    </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,20 @@
+<ion-popover-view style="height: 164px; max-width: 210px;">
+  <ion-content scroll="false">
+    <ul class="list no-margin {{ 'LAYOUT.STYLE' | translate }}">
+      <div class="item click" ui-sref="app.dealyDeals" ng-click="links.hide()">
+        {{ 'LABEL.DAILY_DEALS' | translate }}
+      </div>
+      <!--
+      <div class="item click" ui-sref="app.searchCards" ng-click="links.hide()">
+        {{ 'LABEL.SEARCH_CARDS' | translate }}
+      </div>
+      -->
+      <div class="item click" ui-sref="app.shop" ng-click="links.hide()">
+        {{ 'LABEL.CATEGORIES' | translate }}
+      </div>
+      <div class="item click" ui-sref="app.offerSent" ng-click="links.hide()">
+        {{ 'LABEL.OFFERS_SENT' | translate }}
+      </div>
+    </ul>
+  </ion-content>
+</ion-popover-view>

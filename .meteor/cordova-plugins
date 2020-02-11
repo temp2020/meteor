@@ -1,0 +1,15 @@
+cordova-plugin-actionsheet@2.3.3
+cordova-plugin-camera@4.0.3
+cordova-plugin-device@2.0.2
+cordova-plugin-geolocation@4.0.1
+cordova-plugin-inappbrowser@3.0.0
+cordova-plugin-inapppurchase@1.2.0
+cordova-plugin-request-location-accuracy@2.3.0
+cordova-plugin-splashscreen@5.0.2
+cordova-plugin-statusbar@2.4.2
+cordova-plugin-x-toast@2.6.2
+ionic-plugin-keyboard@2.2.1
+phonegap-plugin-push@2.2.3
+cordova-plugin-googleplus@5.3.2
+cordova-android-firebase-gradle-release@3.0.0
+cordova-custom-config@5.1.0

@@ -1,0 +1,66 @@
+<div style="top: -4px;" class="tabs tabs-icon-top">
+    
+    <a 
+        ng-click="goTo(0)" 
+        ng-class="activeBottom === 0 ? 'active' :''"  
+        class="tab-item">
+
+        <i style="padding-top: 4px;" class="icon tabs-bottom fas fa-store" aria-hidden="true"></i>
+      {{ 'LABEL.STORES' | translate }}
+    </a>
+    
+    <a 
+        ng-click="goTo(1)" 
+        ng-class="activeBottom === 1 ? 'active' :''" 
+        class="tab-item">
+
+        <i class="icon tabs-bottom-ion ion-android-favorite"></i>
+        {{ 'LABEL.FAVORITE' | translate }}
+    </a>
+
+    <a 
+        ng-click="goTo(2)" 
+        ng-class="activeBottom === 2 ? 'active' :''" 
+        class="tab-item">
+
+        <i class="icon tabs-bottom-ion ion-search"></i>
+        {{ 'LABEL.SEARCH_MENU' | translate }}
+    </a>
+
+    <a 
+        ng-click="goTo(3)" 
+        ng-class="activeBottom === 3 ? 'active' :''" 
+        class="tab-item">
+
+        <i class="icon tabs-bottom-ion ion-android-arrow-forward"></i>
+        {{ 'LABEL.FOLLOWED' | translate }}
+    </a>
+
+    <a 
+        ng-click="goTo(4)" 
+        ng-class="activeBottom === 4 ? 'active' :''" 
+        class="tab-item">
+
+        <i ng-if="!menu.myprofile" class="icon tabs-bottom-ion ion-android-person"></i>
+
+        <i ng-if="menu.myprofile && !menu.myprofile.profImageID" ng-style="{'background-image': 'url( {{ menu.myprofile.profImage }} )'}" class="icon tabs-bottom-ion profile-image"></i>
+
+        <i ng-if="menu.myprofile && menu.myprofile.profImageID" ng-style="{ 'background-image': 'url( {{ menu.profileImg.link() }} )' }" class="icon tabs-bottom-ion profile-image"></i>
+        
+        {{ 'LABEL.MY_PROFILE' | translate }}
+    </a>
+    <!--
+    <a 
+        ng-click="goTo(4)" 
+        ng-class="activeBottom === 4 ? 'active' :''" 
+        class="tab-item">
+
+        <i class="icon tabs-bottom-ion ion-ios-filing-outline"></i>
+        {{ 'LABEL.ACTIVITIES' | translate }}
+        <span ng-show="menu.unreadFeed !== 0" class="badge badge-assertive badge-bottom">
+            {{ menu.unreadFeed }}
+        </span>
+
+    </a>   
+    -->         
+</div>

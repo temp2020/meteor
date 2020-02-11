@@ -1,0 +1,42 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}" view-title="">        
+  <ion-content>
+      
+    <div ng-if="!vm.store || (vm.store && !vm.store.active)" class="empty-page">
+      <h3>
+        {{ 'LABEL.NO_STORE' | translate }}
+      </h3>
+    </div>
+      
+    <div ng-if="vm.store && vm.store.active" class="list card">
+
+      <div class="item store-title">
+        <h1 class="title">{{ vm.store.name }} </h1>
+      </div>
+    
+      <div class="item item-body no-padding">
+        <img 
+          ui-sref="app.listings({ type: 'store', groupId: vm.store._id })" 
+          class="full-image click" 
+          ng-src="{{ vm.store.imageLink }}">
+
+        <a 
+          class="item positive" 
+          ui-sref="app.listings({ type: 'store', groupId: vm.store._id })">
+          <h2>
+            {{ 'LABEL.ENTRANCE' | translate }}
+          </h2>
+        </a>
+
+        <p 
+          ng-bind-html="vm.description(vm.store.description)" 
+          class="padding"
+          style="font-weight: bold;">
+        </p>
+
+      </div>
+
+    </div>
+      
+  </ion-content>
+  
+</ion-view>

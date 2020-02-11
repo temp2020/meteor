@@ -1,0 +1,120 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+
+  <ion-nav-title>
+      <h1 class="title {{ 'LAYOUT.TITLE_STYLE' | translate }} click" ui-sref="app.shop">Vastershops</h1>      
+  </ion-nav-title>
+
+  <ion-nav-buttons side="left">
+    <button 
+      ng-if="vm.language === 'ar'" 
+      class="button button-icon button-clear ion-android-more-vertical"
+      ng-click="links.show($event)">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+    <button 
+      ng-if="vm.language !== 'ar'" 
+      class="button button-icon button-clear ion-android-more-vertical"
+      ng-click="links.show($event)">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-header-bar class="tabs-striped tabs-top tabs-light bar-subheader no-padding">
+    <tabs></tabs>
+  </ion-header-bar>
+  
+  <ion-content>
+    <ion-refresher
+        pulling-text="{{ 'LABEL.REFRESH' | translate }}"
+        on-refresh="refresh()"
+        disable-pulling-rotation="true" >
+    </ion-refresher>
+    <div class="list list-inset">
+      <label class="item item-input">
+      <i class="icon ion-android-arrow-back placeholder-icon"></i>
+        <input
+          ng-click="vm.search()"
+          ng-keypress="vm.search()"
+          class="search-text"
+          type="text"
+          translate
+          translate-attr-placeholder="LABEL.SEARCH"
+          style="background-color: #fff;"
+          readonly />
+      </label>
+    </div>
+    <div ng-repeat="product in vm.products" class="row" ng-if="$index % 2 === 0">
+      <div class="card col col-45" id="content-main">
+        <a id="listings" ui-sref="app.listings({ type: 'category', groupId: vm.products[$index]._id })">
+          <div class="item item-image">
+            <img ng-src="{{ vm.products[$index].image }}">
+          </div>
+          <p class="item item-text-wrap shop-label">
+            <span style="font-size: 12px;" ng-if="vm.language === 'en'">{{ vm.products[$index].name.en }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'fr'">{{ vm.products[$index].name.fr }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'ar'">{{ vm.products[$index].name.ar }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'es'">{{ vm.products[$index].name.es }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'de'">{{ vm.products[$index].name.de }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'hi'">{{ vm.products[$index].name.hi }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'it'">{{ vm.products[$index].name.it }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'jp'">{{ vm.products[$index].name.jp }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'nl'">{{ vm.products[$index].name.nl }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'pt'">{{ vm.products[$index].name.pt }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'ru'">{{ vm.products[$index].name.ru }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'sw'">{{ vm.products[$index].name.sw }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'zhs'">{{ vm.products[$index].name.zhs }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'zht'">{{ vm.products[$index].name.zht }}</span>
+            <br />
+            <span>
+              <i class="fas fa-shopping-cart"></i> {{ vm.products[$index].listingsCount | number }}
+            </span>
+          </p>
+        </a>
+      </div>
+      <div class="card col col-45" ng-show="vm.products[$index + 1]" id="content-main">
+        <a id="listings" ui-sref="app.listings({ type: 'category', groupId: vm.products[$index + 1]._id })">
+          <div class="item item-image">
+            <img ng-src="{{ vm.products[$index + 1].image }}">
+          </div>
+          <p class="item item-text-wrap shop-label">
+            <span style="font-size: 12px;" ng-if="vm.language === 'en'">{{ vm.products[$index + 1].name.en }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'fr'">{{ vm.products[$index + 1].name.fr }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'ar'">{{ vm.products[$index + 1].name.ar }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'es'">{{ vm.products[$index + 1].name.es }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'de'">{{ vm.products[$index + 1].name.de }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'hi'">{{ vm.products[$index + 1].name.hi }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'it'">{{ vm.products[$index + 1].name.it }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'jp'">{{ vm.products[$index + 1].name.jp }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'nl'">{{ vm.products[$index + 1].name.nl }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'pt'">{{ vm.products[$index + 1].name.pt }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'ru'">{{ vm.products[$index + 1].name.ru }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'sw'">{{ vm.products[$index + 1].name.sw }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'zhs'">{{ vm.products[$index + 1].name.zhs }}</span>
+            <span style="font-size: 12px;" ng-if="vm.language === 'zht'">{{ vm.products[$index + 1].name.zht }}</span>
+              <br />
+              <span>
+                <i class="fas fa-shopping-cart"></i> {{ vm.products[$index + 1].listingsCount | number }}
+              </span>
+          </p>
+        </a>
+      </div>
+      <div class="col col-offset-45" style="margin: 5px 5px;" ng-hide="vm.products[$index + 1]">
+      </div>
+    </div>
+    <div ng-show="vm.products.length === 0 && vm.contentLoaded" class="item no-posts">
+      <h3 id="content-main" translate="{{ vm.noPosts }}">
+      </h3>
+    </div>
+    <ion-spinner ng-show="vm.products.length === 0 && !vm.contentLoaded" class="search-spinner" icon="spiral"></ion-spinner>
+    <ion-infinite-scroll
+        ng-if="vm.limit < vm.allproducts"
+        spinner="spiral"
+        distance="1%"
+        on-infinite="loadMore()" >
+    </ion-infinite-scroll>
+  </ion-content>
+  <ion-footer-bar class="tabs-striped tabs-bottom tabs-light no-padding shop-footer">
+    <tabs-bottom></tabs-bottom>
+  </ion-footer-bar>
+</ion-view>

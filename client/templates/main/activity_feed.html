@@ -1,0 +1,56 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+    <ion-nav-title align-title="left">
+        <h1 class="title {{ 'LAYOUT.TITLE_STYLE' | translate }}">{{ 'LABEL.ACTIVITIES' | translate }}</h1>
+    </ion-nav-title>
+    <!--
+    <ion-header-bar class="tabs-striped tabs-top tabs-light bar-subheader no-padding">
+            <tabs></tabs>
+    </ion-header-bar>
+    -->
+    <ion-content>
+    <ion-refresher
+        pulling-text="{{ 'LABEL.REFRESH' | translate }}"
+        on-refresh="refresh()"
+        disable-pulling-rotation="true" >
+    </ion-refresher>
+    <ul class="no-margin list">
+        <li
+            nav-direction="forward"
+            ng-repeat="feed in vm.feeds"
+            ng-class="vm.isRead(feed._id) ? 'gray' : 'white'"
+            style="padding: 22px 16px 16px 16px;"
+            ng-click="vm.go(feed._id)"
+            class="item"
+            id="content-main" >
+            <p class="feeds-date"> {{feed.postDate | calendar}} </p>
+
+            <p
+              ng-if="feed.body !== 'MESSAGE.FEED.POST_FEEDBACK'"
+              style="font-size: 12px; white-space: normal;"
+              ng-bind-html="feed.body | translate: { listing: feed.listingTitle, user: feed.actionBy }" >
+            </p>
+            <p
+              ng-if="feed.body === 'MESSAGE.FEED.POST_FEEDBACK'"
+              style="font-size: 12px; white-space: normal;"
+              ng-bind-html="feed.body | translate: { user: feed.actionBy }" >
+            </p>
+
+        </li>
+        <li ng-if="vm.feeds.length === 0" class="item no-posts">
+          <h3 id="content-main" translate="{{ vm.noPosts }}"></h3>
+        </li>
+    </ul>
+    <ion-infinite-scroll
+        style="height: 0px;"
+        ng-if="vm.loaded < vm.allfeeds"
+        icon="ion-loading-c"
+        distance="10%"
+        on-infinite="loadMore()">
+    </ion-infinite-scroll>
+    </ion-content>
+    <!--
+    <ion-footer-bar class="tabs-striped tabs-bottom tabs-light no-padding shop-footer">
+        <tabs-bottom></tabs-bottom>
+    </ion-footer-bar>
+    -->
+</ion-view>

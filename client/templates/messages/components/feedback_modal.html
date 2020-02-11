@@ -1,0 +1,55 @@
+<ion-modal-view style="width: 100%; height: 100%; top: 0px; bottom: 0px; right: 0px; left: 0px; background-color: #F0F0F0;">
+  <ion-header-bar>
+    <h1 class="title" translate>LABEL.PLEASE_RATE</h1>
+  </ion-header-bar>
+  <ion-content class="white">
+    <div class="{{ 'LAYOUT.STYLE' | translate }} item item-avatar no-border">
+      <img ng-src="{{ vm.otherUser.profImage }}">
+      <h2>{{ vm.otherUser.profName }}</h2>
+    </div>
+    <label class="padding item item-input item-stacked-label no-border {{ 'LAYOUT.STYLE' | translate }}">
+      <span class="input-label" translate>LABEL.RATING</span>
+      <div class="row" style="text-align: center;">
+        <div class="button-bar">
+          <ion-radio
+              ng-class="(vm.rating === null || vm.rating === false)  ? 'not-rated' : ''"
+              class="rate-radio"
+              icon="none"
+              ng-model="vm.rating"
+              ng-value="true"
+              name="rating" >
+            <i class="far fa-thumbs-up fa-lg" style="padding: 0;" ></i>
+          </ion-radio>
+          <ion-radio
+              ng-class="(vm.rating === null || vm.rating === true) ? 'not-rated' : ''"
+              class="rate-radio"
+              icon="none"
+              ng-model="vm.rating"
+              ng-value="false"
+              name="rating" >
+            <i class="far fa-thumbs-down fa-lg" style="padding: 0;" ></i>
+          </ion-radio>
+        </div>
+      </div>
+    </label>
+    <label class="item item-stacked-label padding {{ 'LAYOUT.STYLE' | translate }}">
+      <span class="input-label" translate>LABEL.FEEDBACK</span>
+      <textarea
+          ng-model="vm.feedback"
+          row="5"
+          style="resize: none; height: 86px; width: 100%; overflow:hidden;"
+          type="text"
+          translate
+          translate-attr-placeholder="LABEL.TYPE_COMMENTS" >
+      </textarea>
+    </label>
+    <div class="padding">
+      <button ng-disabled="vm.rating === null" ng-click="vm.rate()" class="button button-block button-light button-custom" translate>
+        LABEL.SUBMIT
+      </button>
+      <button nav-direction="forward" ui-sref="app.chatlist" ng-click="vm.skip()" class="button button-block button-light button-outline button-custom" translate>
+        LABEL.SKIP
+      </button>
+    </div>
+  </ion-content>
+</ion-modal-view>

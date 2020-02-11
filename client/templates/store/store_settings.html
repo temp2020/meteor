@@ -1,0 +1,80 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+    <ion-nav-title>
+        <h1 class="title {{ 'LAYOUT.TITLE_STYLE' | translate }}">{{ 'LABEL.STORE_SETTINGS_TITLE' | translate }}</h1>
+    </ion-nav-title>
+      <ion-content>
+        <div class="list no-margin">
+
+          <div ng-show="vm.store.active" style="padding-left: 16px;" class="item no-padding">
+              <button ng-click="vm.removeStore()" class="button button-clear button-assertive assertive icon-left ion-android-cancel" translate>
+                  LABEL.REMOVE_STORE
+              </button>
+          </div>
+          
+          <span
+            ng-if="!vm.hasStore"
+            class="item store-warning"
+            translate>
+            MESSAGE.FORM.STORE_DISABLED
+          </span>
+
+          <div class="item item-input">
+
+            <span class="input-label" translate>
+                LABEL.STORE_IMAGE
+            </span>
+
+            <span
+                ngf-drop
+                ngf-select
+                ng-if="!vm.isMobile"
+                ngf-change="vm.loadStoreImage($files)"
+                ngf-multiple="false"
+                ngf-allow-dir="false"
+                ngf-accept="'image/*'"
+                ngf-drop-available="false"
+                ngf-resize="{width: 600, height: 600, quality: .7}"
+                class="store-image-container click" >
+                <img ng-if="!vm.storePreview" class="store-preview" ng-src="{{ vm.store.imageLink }}">
+                <img ng-if="vm.storePreview" class="store-preview" ng-src="{{ vm.storePreview }}">
+            </span>
+
+            <span
+                ng-if="vm.isMobile"
+                ng-click="vm.addStoreFile()"
+                class="store-image-container click" >
+                <img ng-if="!vm.storePreview" class="store-preview" ng-src="{{ vm.store.imageLink }}">
+                <img ng-if="vm.storePreview" class="store-preview" ng-src="{{ vm.storePreview }}">
+            </span>
+          </div>
+
+          <label class="item item-input">
+            <span class="input-label" translate>
+                LABEL.STORE_NAME
+            </span>
+            <input type="text" ng-model="vm.store.name">
+          </label>
+
+          <label class="item item-input">
+              <span class="input-label" translate>
+                LABEL.STORE_DESCRIPTION
+              </span>
+              <textarea
+                ng-model="vm.store.description"
+                row="3"
+                msd-elastic
+                class="store-description"
+                type="text">
+              </textarea>
+            </label>
+  
+          <div class="padding">
+            <button ng-click="vm.update()" class="button button-block button-light button-custom" translate>
+                LABEL.UPDATE_PROFILE_OR_STORE
+            </button>
+          </div>
+
+          </div>
+      </ion-content>
+  </ion-view>
+  

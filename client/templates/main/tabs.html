@@ -1,0 +1,27 @@
+<!--Ce fichier gère la barre du haut que j'appelle TOP BAR et que Mark appelle SUB HEADER BAR.
+  Je vais garder son appellation pour que cela soit plus facile pour lui à coder. Les tabs sont gérés, les icones et leur couleurs
+  avec la classe tab-item qui est dans le fichier css.
+  A signaler que le tab HOME EST APPELE ici SHOP TAB et le + est appelé SELL TAB
+-->
+<div class="tabs tabs-icon-top">
+  <a ng-class="activeTab === 'Shop' ? 'active' :''"  class="tab-item" ng-click="menu.selectShop()">
+    <i class="icon ion-home"></i> 
+    <!--{{ 'LABEL.HOME' | translate }}-->
+  </a>
+  <a ng-class="activeTab === 'Sell' ? 'active' :''" class="tab-item" ng-click="menu.selectSell()">
+    <i class="icon ion-plus" aria-hidden="true"></i>
+    <!--{{ 'LABEL.MY_PRODUCTS' | translate }}-->
+    <br>
+    <span ng-if="menu.unreadTotal > 0 && vm.language === 'ar'" class="badge badge-assertive main-tab-ltr">{{ menu.unreadTotal }}+</span>
+    <span ng-if="menu.unreadTotal > 0 && vm.language !== 'ar'"  class="badge badge-assertive main-tab">+{{ menu.unreadTotal }}</span>
+  </a>
+  <!--
+  <a ng-if="menu.currentUser" ng-class="activeTab === 'Offers' ? 'active' :''" class="tab-item" ng-click="menu.selectMyOffer()">
+    <i style="display: inline;" class="fa fa-lg fa-handshake-o" aria-hidden="true"></i>
+  </a>
+  <a ng-if="menu.currentUser" ng-class="activeTab === 'Chat' ? 'active' :''" class="tab-item" ng-click="menu.selectChat()">
+    <i class="icon ion-ios-email-outline"></i>
+    <span ng-show="menu.unreadMsg != 0" class="badge badge-assertive badge-msg">{{ menu.unreadMsg }}</span>
+  </a>
+  -->
+</div>

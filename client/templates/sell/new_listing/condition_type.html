@@ -1,0 +1,86 @@
+<ion-view class="{{ 'LAYOUT.NEW_LISTING_STYLE' | translate }}">
+  
+        <ion-nav-bar class="bar-light new-listing-header-bar">
+          <ion-nav-back-button
+            nav-direction="back" 
+            class="button button-clear button-icon ion-android-arrow-back">
+          </ion-nav-back-button>
+        </ion-nav-bar>
+                  
+        <ion-nav-title>
+            <h1 class="title"></h1>      
+        </ion-nav-title>
+                  
+        <ion-nav-buttons side="left">
+                  
+          <button
+            class="button button-clear button-large button-dark new-listing-header-btn"
+            translate>
+            LABEL.CONDITION_LABEL
+          </button>
+                  
+        </ion-nav-buttons>
+                  
+        <ion-nav-buttons side="right">
+                  
+          <button 
+            class="button button-clear button-large button-calm new-listing-header-btn"
+            ng-click="vm.next()"
+            translate>
+            LABEL.NEXT
+          </button>
+                  
+        </ion-nav-buttons>
+                    
+        <ion-content class="white">
+          <div class="list no-margin">
+            
+            <div class="item item-input new-listing-field selection">
+      
+              <div class="button-bar bar-stable condition-button {{ 'LAYOUT.RADIO_BUTTON' | translate }}">
+                
+                <button
+                  ng-click="vm.select('DATA.B2B')"
+                  ng-class="vm.conditionType === 'DATA.B2B' ? 'selected' : ''"
+                  class="button">
+                  {{ 'DATA.B2B' | translate }}
+                  &nbsp;
+                  <i class="icon ion-checkmark"></i>
+                </button>
+      
+                <button 
+                  ng-click="vm.select('DATA.B2C')"
+                  ng-class="vm.conditionType === 'DATA.B2C' ? 'selected' : ''"
+                  class="button">
+                  {{ 'DATA.B2C' | translate }}
+                  &nbsp;
+                  <i class="icon ion-checkmark"></i>
+                </button>
+
+                <button 
+                  ng-click="vm.select('DATA.C2B')"
+                  ng-class="vm.conditionType === 'DATA.C2B' ? 'selected' : ''"
+                  class="button">
+                  {{ 'DATA.C2B' | translate }}
+                  &nbsp;
+                  <i class="icon ion-checkmark"></i>
+                </button>
+      
+              </div>
+      
+            </div>
+                  
+            <div class="item no-border new-listing-description">
+              <p translate>
+                DESCRIPTION.TYPE.LINE_1
+              </p>
+              <br>
+              <p translate>
+                DESCRIPTION.TYPE.LINE_2
+              </p>
+            </div>
+                  
+          </div>
+        </ion-content>
+                        
+      </ion-view>

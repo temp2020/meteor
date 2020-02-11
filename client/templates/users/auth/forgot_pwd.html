@@ -1,0 +1,24 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+  <ion-nav-title>
+    <h1 class="title"></h1>
+  </ion-nav-title>  
+  <ion-content class="white">
+    <div class="list no-margin">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label" translate >LABEL.EMAIL</span>
+        <input type="text" ng-model="vm.email">
+      </label>
+    </div>
+    <div class="padding">
+      <button
+        ng-click="vm.resetPass()"
+        class="button button-block button-light button-custom" 
+        translate >
+        LABEL.RESET_PASSWORD
+      </button>
+    </div>
+    <button ui-sref="app.login" style="margin: 0px;" class="button button-block button-clear button-light button-custom no-padding">
+      <i class="icon ion-log-in"></i> {{ 'LABEL.LOGIN' | translate }}
+    </button>
+  </ion-content>
+</ion-view>

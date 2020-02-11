@@ -1,0 +1,99 @@
+<!--page template des cartes de publications je pourrais rajouter du texte en dessous et le bouton nouveau produit-->
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+  <ion-nav-title>
+      <h1 class="title {{ 'LAYOUT.TITLE_STYLE' | translate }}">
+        {{ 'LABEL.SEARCH_CARDS' | translate }}
+      </h1>
+  </ion-nav-title>
+<ion-content>
+
+  <div class="card-bar">
+      <i class="icon ion-plus gems"></i>
+
+      <span class="points-area">
+        {{ 0 | largeNumber:0 }}
+        &nbsp;
+        <span class="gems">novs</span>
+      </span>
+
+      &nbsp;
+
+      <i class="icon ion-plus coins"></i>
+
+      <span class="points-area">
+        {{ vm.coins.quantity | largeNumber:0 }}
+        &nbsp;
+        <span class="coins">vscoins</span>
+      </span>
+  </div>
+
+  <div class="item card-subtitle">
+    <h3 style="overflow: visible;">
+      {{ 'LABEL.SEARCH_CARDS_SUBTITLE' | translate }}
+      <span ng-click="vm.showTip($event)" class="fa-stack card-tooltip click">
+        <i style="font-size: 1.5em; color: white;" class="fas fa-circle fa-stack-2x"></i>
+        <i style="font-size: 1.5em;" class="positive fas fa-info-circle fa-stack-2x"></i>
+      </span>
+    </h3>
+  </div>
+
+  <!-- Cards Start -->
+
+  <div class="row pack-selection">
+      <div
+        class="card col click pack-card"
+        ng-click="vm.selectCard($index)"
+        ng-class="vm.selectedCard && vm.selectedCard.name === card.name ? 'unlocked' : ''"
+        id="content-main"
+        ng-repeat="card in vm.cards"
+        ng-if="$index <= 2">
+
+        <span ng-if="$index !== 0" class="search-days">
+          <p translate>LABEL.DAYS</p>
+        </span>
+
+        <img style="width: 100%;" ng-src="{{card.image}}">
+        
+        <span class="search-check">
+          <i ng-if="vm.selectedCard && vm.selectedCard.name === card.name" class="icon ion-checkmark"></i>
+        </span>
+
+        <span class="card-lock">
+          <i ng-if="vm.selectedCard && vm.selectedCard.name !== card.name" class="fa fa-lock" aria-hidden="true"></i>
+          <i ng-if="vm.selectedCard && vm.selectedCard.name === card.name" class="fa fa-unlock-alt unlock" aria-hidden="true"></i>
+        </span>
+
+      </div>
+  </div>
+
+  <div class="row pack-selection">
+      <div
+        class="card col click pack-card"
+        ng-click="vm.selectCard($index)"
+        ng-class="vm.selectedCard && vm.selectedCard.name === card.name ? 'unlocked' : ''"
+        id="content-main"
+        ng-repeat="card in vm.cards"
+        ng-if="$index > 2">
+
+        <span class="search-days">
+          <p translate>LABEL.DAYS</p>
+        </span>
+
+        <img style="width: 100%;" ng-src="{{card.image}}">
+
+        <span class="search-check">
+          <i ng-if="vm.selectedCard && vm.selectedCard.name === card.name" class="icon ion-checkmark"></i>
+        </span>
+
+        <span class="card-lock">
+            <i ng-if="vm.selectedCard && vm.selectedCard.name !== card.name" class="fa fa-lock" aria-hidden="true"></i>
+            <i ng-if="vm.selectedCard && vm.selectedCard.name === card.name" class="fa fa-unlock-alt unlock" aria-hidden="true"></i>
+        </span>
+      </div>
+
+  </div>
+
+</ion-content>
+</ion-view>
+
+          

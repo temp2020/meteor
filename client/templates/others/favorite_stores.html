@@ -1,0 +1,101 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+    <ion-nav-title>
+      <h1 class="title {{ 'LAYOUT.TITLE_STYLE' | translate }}">{{ 'LABEL.FAVORITE_STORES' | translate }}</h1>      
+    </ion-nav-title>
+
+    <ion-header-bar class="tabs-striped tabs-top tabs-light bar-subheader no-padding">
+        <tabs></tabs>
+    </ion-header-bar>
+    <ion-content>
+      <ion-refresher
+          pulling-text="{{ 'LABEL.REFRESH' | translate }}"
+          on-refresh="refresh()"
+          disable-pulling-rotation="true" >
+      </ion-refresher>
+
+      <div class="list list-inset">
+          <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input
+              ng-model="vm.searchText"
+              class="search-text"
+              type="text"
+              ng-change="vm.search()"
+              translate
+              translate-attr-placeholder="LABEL.SEARCH"
+              style="background-color: #fff;" />
+          </label>
+        </div>
+
+      <div ng-repeat="product in vm.products" class="row" ng-if="$index % 2 === 0">
+        <div class="card col col-45" id="content-main">
+          <div id="listings">
+            <div class="item item-image click" ui-sref="app.listings({ type: 'store', groupId: vm.products[$index]._id })">
+              <img ng-src="{{ vm.products[$index].imageLink }}">
+            </div>
+            <div class="item item-text-wrap shop-label">
+              <div class="row no-padding">
+                <div class="col col-75 no-padding click" ui-sref="app.listings({ type: 'store', groupId: vm.products[$index]._id })">
+                    <span style="font-size: 12px;">
+                      {{ vm.products[$index].name }}
+                    </span>
+                    <br />
+                    <span>
+                      <i class="fas fa-shopping-cart"></i> {{ vm.products[$index].listingsCount | number }}
+                    </span>
+                </div>
+                <div class="col col-25 no-padding">
+                    <button ng-click="vm.likeStore( vm.products[$index]._id )" class="button button-assertive button-clear">
+                      <i ng-if="!vm.isLiked( vm.products[$index]._id )" class="icon ion-android-favorite-outline"></i>
+                      <i ng-if="vm.isLiked( vm.products[$index]._id )" class="icon ion-android-favorite"></i>
+                    </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card col col-45" ng-show="vm.products[$index + 1]" id="content-main">
+          <div id="listings">
+            <div class="item item-image click" ui-sref="app.listings({ type: 'store', groupId: vm.products[$index + 1]._id })">
+              <img ng-src="{{ vm.products[$index + 1].imageLink }}">
+            </div>
+            <div class="item item-text-wrap shop-label">
+                <div class="row no-padding">
+                  <div class="col col-75 no-padding click" ui-sref="app.listings({ type: 'store', groupId: vm.products[$index + 1]._id })">
+                      <span style="font-size: 12px;">
+                        {{ vm.products[$index + 1].name }}
+                      </span>
+                      <br />
+                      <span>
+                        <i class="fas fa-shopping-cart"></i> {{ vm.products[$index + 1].listingsCount | number }}
+                      </span>
+                  </div>
+                  <div class="col col-25 no-padding">
+                      <button ng-click="vm.likeStore( vm.products[$index + 1]._id )" class="button button-assertive button-clear">
+                          <i ng-if="!vm.isLiked( vm.products[$index + 1]._id )" class="icon ion-android-favorite-outline"></i>
+                          <i ng-if="vm.isLiked( vm.products[$index + 1]._id )" class="icon ion-android-favorite"></i>
+                      </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col col-offset-45" style="margin: 5px 5px;" ng-hide="vm.products[$index + 1]">
+        </div>
+      </div>
+      <div ng-show="vm.products.length === 0 && vm.contentLoaded" class="item no-posts">
+        <h3 id="content-main" translate="{{ vm.noPosts }}">
+        </h3>
+      </div>
+      <ion-spinner ng-show="vm.products.length === 0 && !vm.contentLoaded" class="search-spinner" icon="spiral"></ion-spinner>
+      <ion-infinite-scroll
+          ng-if="vm.limit < vm.allStores"
+          spinner="spiral"
+          distance="1%"
+          on-infinite="loadMore()" >
+      </ion-infinite-scroll>
+    </ion-content>
+    <ion-footer-bar class="tabs-striped tabs-bottom tabs-light no-padding shop-footer">
+        <tabs-bottom></tabs-bottom>
+    </ion-footer-bar>
+  </ion-view>

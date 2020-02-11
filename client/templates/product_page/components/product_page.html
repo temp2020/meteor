@@ -1,0 +1,127 @@
+<div class="item" style="padding: 0px;">
+  <ion-slide-box on-slide-changed="vm.slideChanged($index)">
+    <ion-slide ng-if="vm.listing.images.length !== 0" ng-repeat="image in vm.listing.images">
+      <div class="box item-image">
+        <img id="content-main" class="ng-hide" ng-src="{{ vm.uploads(image) }}" preloader>
+        <loading></loading>
+      </div>
+    </ion-slide>
+    <loading ng-if="vm.listing.images.length === 0"></loading>
+  </ion-slide-box>
+</div>
+<div class="item {{ 'LAYOUT.STYLE' | translate }}">
+
+  <div style="text-align: left" class="row prod-row">
+    <h1 style="font-size: 19px; margin: auto; color: #0c2333c5;" class="no-padding">
+      {{vm.listing.title}}
+    </h1>
+  </div>
+
+  <div class="row prod-row follow-button {{ 'LAYOUT.FOLLOW_BUTTON' | translate }}">
+    
+    <button 
+      ng-if="!vm.isSeller && !vm.following"
+      ng-click="vm.follow()"
+      class="button button-dark button-small" 
+      translate>
+      LABEL.FOLLOW
+    </button>
+  
+    <button 
+      ng-if="!vm.isSeller && vm.following"
+      ng-click="vm.follow()"
+      class="button button-dark button-small">
+      <i class="icon ion-checkmark"></i> 
+      {{ 'LABEL.FOLLOWING' | translate }}
+    </button>
+
+    <button 
+      ng-if="vm.isSeller && vm.listing && !vm.listing.isPublished"
+      ng-click="vm.togglePublish()"
+      class="button button-dark button-small" 
+      translate>
+      LABEL.PUBLISH
+    </button>
+
+    <button 
+      ng-if="vm.isSeller && vm.listing && vm.listing.isPublished"
+      ng-click="vm.togglePublish()"
+      class="button button-dark button-small">
+      <i class="icon ion-checkmark"></i> 
+      {{ 'LABEL.PUBLISHED' | translate }}
+    </button>
+    
+    <!--
+    <span
+      ng-if="!vm.following"
+      ng-click="vm.follow()"
+      class="positive col col-20 no-padding product-btn click"
+      translate>
+      LABEL.FOLLOW
+    </span>
+    <span
+      ng-if="vm.following"
+      ng-click="vm.follow()"
+      class="balanced col col-20 no-padding product-btn click">
+      <i class="icon ion-checkmark"></i> 
+      {{ 'LABEL.FOLLOWING' | translate }}
+    </span>
+    -->
+
+  </div>
+
+  <div ng-if="vm.priceAmount( vm.listing.sellPrice, vm.listing.currency )" class="row prod-row">
+    <h5
+      class="col col-30 font-lg"
+      style="color: #4748b3; font-weight: bold;"
+      translate="LABEL.CURRENCY"
+      translate-values="{ price: vm.priceAmount( vm.listing.sellPrice, vm.listing.currency ), currency: vm.baseCurrency }">
+    </h5>
+  </div>
+  <div ng-if="vm.isSeller === true" class="row prod-row">
+    <h5 class="font-md">
+      <i class="icon ion-android-time"></i>
+      &nbsp;
+      {{ 'LABEL.EXPIRY' | translate }} {{ vm.listing.expiryDate | expiryDate }}
+    </h5>
+  </div>
+  <div ng-if="vm.isSeller === true" class="row prod-row">
+    <h5 class="font-md">
+      <i class="far fa-eye"></i>
+      &nbsp;
+      {{ vm.listing.views }}
+    </h5>
+  </div>
+  <div class="row prod-row">
+    <h5 class="font-md">
+      <span class="iconify" data-icon="ic:round-more-horiz" data-inline="false"></span>
+      <!--<i class="icon ion-bag"></i>-->
+      &nbsp;
+      {{ vm.listing.condition | translate }}<br />
+    </h5>
+  </div>
+  <div ng-if="vm.listing && vm.listing.meetLocation" class="row prod-row">
+    <h5 class="font-md">
+      <i style="margin-left: 1px;" class="fas fa-map-marker-alt"></i>
+      &nbsp;
+      {{ vm.listing.meetLocation }}
+    </h5>
+  </div>
+  <div style="padding-top: 10px;" class="row">
+    <p ng-bind-html="vm.notes(vm.listing.listingNotes)" class="font-sm prod-notes"></p>
+  </div>
+</div>
+<div ng-show="vm.postOffer" class="item" style="padding: 0px 16px 0px 16px;">
+  <div class="row prod-row">
+    <p class="font-sm" style="color: #234311; display: inline-block;">
+      {{ vm.offerCount }} {{ vm.setOfferCount( vm.offerCount ) | translate }}
+      &nbsp;&nbsp;&nbsp;
+      {{ 'LABEL.BEST_OFFER' | translate }}:
+      <span
+        ng-if="vm.priceAmount( vm.postOffer.offerAmount, vm.postOffer.currency )"
+        translate="LABEL.CURRENCY"
+        translate-values="{ price: vm.priceAmount( vm.postOffer.offerAmount, vm.postOffer.currency ), currency: vm.baseCurrency }">
+      </span>
+    </p>
+  </div>
+</div>

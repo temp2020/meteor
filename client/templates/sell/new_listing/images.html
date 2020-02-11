@@ -1,0 +1,116 @@
+<ion-view class="{{ 'LAYOUT.NEW_LISTING_STYLE' | translate }}">
+  
+  <ion-nav-bar class="bar-light new-listing-header-bar">
+    <ion-nav-back-button
+      nav-direction="back" 
+      class="button button-clear button-icon ion-android-arrow-back">
+    </ion-nav-back-button>
+
+  </ion-nav-bar>
+
+  <ion-nav-title>
+      <h1 class="title"></h1>      
+  </ion-nav-title>
+
+  <ion-nav-buttons side="left">
+
+    <button
+      class="button button-clear button-large button-dark new-listing-header-btn"
+      translate>
+      LABEL.NEW_IMAGE
+    </button>
+
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+
+    <button 
+      class="button button-clear button-large button-calm new-listing-header-btn"
+      ng-click="vm.next()"
+      translate>
+      LABEL.NEXT
+    </button>
+
+  </ion-nav-buttons>
+  
+  <ion-content class="white">
+    <div class="list no-margin">
+      <!-- Upload Photo - Preview -->
+      <div class="item new-listing-field">
+        <div class="row no-padding">
+
+          <div
+            class="col col-25 no-padding"
+            style="height: 100%; line-height: 0px; margin-left: 1px; margin-right: 1px;"
+            ng-click="vm.selectImage($index)"
+            ng-if="vm.listing"
+            ng-repeat="upload in vm.listing.uploads" 
+            ng-class="upload.selected ? 'upload-select' : 'upload-preview'">
+
+            <img style="width: 100%" ng-src="{{upload.preview}}">
+
+          </div>
+
+          <!-- Upload Photo - With Uploads -->
+          <div class="col col-25 upload-button no-padding">
+
+            <div
+              ng-if="vm.listing && vm.listing.uploads.length < 4 && vm.isApp === true"
+              class="button button-block button-stable upload-btn upload-btn-sm"
+              ng-click="vm.addFile()" >
+
+              <i class="icon ion-android-camera"></i>
+            </div>
+
+            <div
+              ngf-select
+              id="addImg"
+              ng-if="vm.listing && vm.listing.uploads.length < 4 && vm.isApp === false"
+              ngf-change="vm.onFileSelect($files)"
+              class="button button-block button-stable upload-btn upload-btn-sm"
+              ngf-multiple="false"
+              ngf-allow-dir="false"
+              ngf-resize="{width: 800, height: 800, quality: .7}"
+              ngf-accept="'image/*'" >
+              
+              <i class="icon ion-android-camera"></i>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="item no-border new-listing-description">
+        <p translate>
+          DESCRIPTION.NEW_IMAGE.LINE_1
+        </p>
+        <br>
+        <p translate>
+          DESCRIPTION.NEW_IMAGE.LINE_2
+        </p>
+        <br>
+        <p translate>
+          DESCRIPTION.NEW_IMAGE.LINE_3
+        </p>
+        <br>
+        <p translate>
+          DESCRIPTION.NEW_IMAGE.LINE_4
+        </p>
+      </div>
+
+    </div>
+  </ion-content>
+
+  <ion-footer-bar
+    ng-if="vm.imageSelected"
+    ng-click="vm.removeUploads()"
+    align-title="center"
+    class="bar-assertive" >
+    
+    <h1 class="title">
+      <i class="far fa-trash-alt fa-lg"></i> {{ 'LABEL.REMOVE_PHOTO' | translate }}
+    </h1>
+
+  </ion-footer-bar>
+
+</ion-view>

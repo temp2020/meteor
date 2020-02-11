@@ -1,0 +1,70 @@
+{
+  "public": {
+    "facebook": {
+      "appId": "569318530158564"
+    },
+    "admob": {
+      "adId": ""
+    },
+    "fcm": {
+      "senderId": "1039492954324"
+    },
+    "google":{
+      "clientId": "129318328021-77g7urrh9l32blidpihh93hkd3gu2rp5.apps.googleusercontent.com"
+    },
+    "paypal":{
+      "mode": "sandbox",
+      "sandbox": "Aa-j_mPZ63njdoGYwxsC_FuA3pXz-Eaf3HM8CI8JiSDI0AFSGThmPUPwg0iIV-qVyiwWaakNNHvo4Hni",
+      "production": ""
+    },
+    "googlePlay":{
+      "mode": "sandbox"
+    },
+    "currencies":{
+      "missing": "MAD,DZD,TND,XOF,XAF"
+    }
+  },
+  "facebook": {
+    "secret": "e4d6dc7eb538272026bb860f0efcfb19"
+  },
+  "google": {
+      "secret": "BzWbYKleTviQiufDxd0HJFE9"
+  },
+  "sendgrid": {
+    "apiKey": "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"
+  },
+  "mailgun": {
+    "username": "",
+    "password": ""
+  },
+  "here": {
+    "appId": "biwcAs946yrnqZxciQ4R",
+    "appCode": "dhGvmIYDiai6io0h2hWgSJkd-M212-GJz_MP0DPm-yw"
+  },
+  "fcm": {
+    "serverKey": "AIzaSyDXsLDn1SsRboOfS8TgeyjlhSMsgGs2U4g"
+  },
+  "s3": {
+    "key": "",
+    "secret": "",
+    "bucket": "",
+    "region": "",
+    "domain": ""
+  },
+  "listings":{
+    "limit": "6",
+    "expiry": "30"
+  },
+  "paypal":{
+    "mode": "sandbox",
+    "sandbox": "EMsxyIl7MiFL4m2v8Uj5_MW7D4SD57K6_bJlPil4WK2YQmu3fcv-wrzcYSNjistV5nRQHH-RDsaYMuuK",
+    "live": ""
+  },
+  "googlePlay":{
+    "mode": "sandbox",
+    "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj1O21ej0fAlbfHgqWAJq9WmtGYPh9t7nqlsyvlvA3H2K2IdcrIW5gWszxBuZjQFm6HEgEyLK2N0vnzBygA9if1JLnGYwTo0lm3v+nT4jTDsqkIeMoxS4HLEkdynl+lchTL/x8dj0cjL1alS485w0j8XMwTzFfLQT/D2cg3KwREa6DPP94r7w+eK4sg9P6qj73kND69IWaG/v4YjOBrszEPxp7/e5CAFngdErASU+mzySOZ+t3wng15nj4WGUB5dEq+sk0OmqSJnFzrZFTGJLGVQiWys4bxnMnXSuzs/Cd5NYqDp3HR4kpr5wLJ+mUV8FZrnorGR5qDdCs98pWKM6pQIDAQAB"
+  },
+  "fixer":{
+    "api": "3b8f54a453b0d336de4736c0def95422"
+  }
+}

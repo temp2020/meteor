@@ -1,0 +1,23 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}" style="background-color: #FFF" view-title="">
+    <ion-nav-buttons side="left">
+        <button 
+          ng-if="vm.language === 'ar'" 
+          class="button button-icon button-clear ion-android-more-vertical"
+          ng-click="links.show($event)">
+        </button>
+      </ion-nav-buttons>
+              
+    <ion-nav-buttons side="right">
+      <button 
+        ng-if="vm.language !== 'ar'" 
+        class="button button-icon button-clear ion-android-more-vertical"
+        ng-click="links.show($event)">
+      </button>
+    </ion-nav-buttons>
+    
+  <ion-content class="white empty-page">
+      <h3 class="title">{{ 'LABEL.DAILY_DEALS' | translate }}</h3>
+      <p>{{ 'LABEL.COMING_SOON' | translate }}</p>
+  </ion-content>
+</ion-view>
+    

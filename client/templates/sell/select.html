@@ -1,0 +1,46 @@
+<ion-view>
+    <ion-nav-title>
+      <h1 class="title">{{ 'LABEL.SELECT_CATEGORY' | translate }}</h1>
+    </ion-nav-title>
+  <ion-content>
+    <ul class="list no-margin {{ 'LAYOUT.STYLE' | translate }}">
+      <li
+        ng-if="vm.language === 'ar'"
+        class="item item-thumbnail-right click"
+        ng-repeat="product in vm.products"
+        ui-sref="app.newpost({ productId: product._id })">
+        <img id="content-main" ng-src="{{ product.image }}">
+        {{ product.name.ar }}
+      </li>
+      <li
+        ng-if="vm.language !== 'ar'"
+        class="item item-thumbnail-left click"
+        ng-repeat="product in vm.products"
+        ui-sref="app.newpost({ productId: product._id })">
+        <img id="content-main" ng-src="{{ product.image }}">
+        <span ng-if="vm.language === 'en'">{{ product.name.en }}</span>
+        <span ng-if="vm.language === 'fr'">{{ product.name.fr }}</span>
+        <span ng-if="vm.language === 'es'">{{ product.name.es }}</span>
+        <span ng-if="vm.language === 'de'">{{ product.name.de }}</span>
+        <span ng-if="vm.language === 'hi'">{{ product.name.hi }}</span>
+        <span ng-if="vm.language === 'it'">{{ product.name.it }}</span>
+        <span ng-if="vm.language === 'jp'">{{ product.name.jp }}</span>
+        <span ng-if="vm.language === 'nl'">{{ product.name.nl }}</span>
+        <span ng-if="vm.language === 'pt'">{{ product.name.pt }}</span>
+        <span ng-if="vm.language === 'ru'">{{ product.name.ru }}</span>
+        <span ng-if="vm.language === 'sw'">{{ product.name.sw }}</span>
+        <span ng-if="vm.language === 'zhs'">{{ product.name.zhs }}</span>
+        <span ng-if="vm.language === 'zht'">{{ product.name.zht }}</span>
+      </li>
+
+      <ion-spinner ng-if="vm.isLoading" class="search-spinner" icon="spiral"></ion-spinner>
+    </ul>
+    <ion-infinite-scroll
+        style="height: 0px;"
+        ng-if="vm.limit < vm.allproducts"
+        spinner="spiral"
+        distance="1%"
+        on-infinite="loadMore()">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

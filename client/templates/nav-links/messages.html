@@ -1,0 +1,15 @@
+<ion-popover-view style="height: 164px; max-width: 210px;">
+  <ion-content scroll="false">
+    <ul class="list no-margin {{ 'LAYOUT.STYLE' | translate }}">
+      <div class="item click" ui-sref="app.feeds" ng-click="links.hide()">
+        {{ 'LABEL.ACTIVITIES' | translate }}
+      </div>
+      <div class="item click" ui-sref="app.about" ng-click="links.hide()">
+        {{ 'LABEL.ABOUT' | translate }}
+      </div>
+      <a class="item click" href="mailto:team45@vastershops.com" style="color: #444" target="_blank" ng-click="links.hide()">
+        {{ 'LABEL.CONTACT_SUPPORT' | translate }}
+      </a>
+    </ul>
+  </ion-content>
+</ion-popover-view>

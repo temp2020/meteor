@@ -1,0 +1,40 @@
+{
+    "project_info": {
+      "project_number": "426680850090",
+      "firebase_url": "https://vastershops-9d723.firebaseio.com",
+      "project_id": "vastershops-9d723",
+      "storage_bucket": "vastershops-9d723.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:426680850090:android:dbd03f31ec91f600",
+          "android_client_info": {
+            "package_name": "com.vastershops.app"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "426680850090-7p26jen5etn4ml8et3jur7h4ep5e50gv.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyAvuR-DCjo1Xx_YnPxcwD8BEqJNStYbff4"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "426680850090-7p26jen5etn4ml8et3jur7h4ep5e50gv.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }

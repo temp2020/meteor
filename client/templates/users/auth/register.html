@@ -1,0 +1,114 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+  <ion-nav-title>
+    <h1 class="title"></h1>
+  </ion-nav-title>   
+  <ion-content class="white">
+
+    <!--
+    <div style="padding-bottom: 5px;" class="padding">
+      <button id="signin" ng-click="vm.loginGoogle()" style="margin: 0px; color: #d34836; border-color: #d34836;" class="button button-block button-outline button-assertive">
+        <i class="fab fa-google-plus-g fa-lg"></i>&nbsp;&nbsp;{{ 'LABEL.REGISTER_GOOGLE' | translate }}
+      </button>
+    </div>
+    <div style="padding-bottom: 20px;" class="padding">
+      <button id="signin" ng-click="vm.loginFB()" style="margin: 0px; color: #3b5998; border-color: #3b5998;" class="button button-block button-outline button-positive">
+        <i class="fab fa-facebook-f fa-lg"></i>&nbsp;&nbsp;{{ 'LABEL.REGISTER_FACEBOOK' | translate }}
+      </button>
+    </div>
+    -->
+
+    <form ng-submit="vm.register()" style="margin-top: 28px;">
+      <div class="list no-margin">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label" translate>LABEL.EMAIL</span>
+          <input ng-focus="vm.clearEmail()" type="text" ng-model="vm.email">
+          <span
+            ng-if="vm.noEmail === true && vm.invalidEmail === false && vm.emailExists === false"
+            style="font-size: 12px; color: red;"
+            translate >
+            MESSAGE.FORM.REQUIRED
+          </span>
+          <span ng-if="vm.invalidEmail === true && vm.emailExists === false"
+            style="font-size: 12px; color: red;"
+            translate>
+            MESSAGE.FORM.INVALID_EMAIL
+          </span>
+          <span
+            ng-if="vm.emailExists === true"
+            style="font-size: 12px; color: red;"
+            translate >
+            MESSAGE.FORM.EMAIL_REGISTERED
+          </span>
+        </label>
+        <label class="item item-input item-stacked-label">
+          {{ 'LABEL.USERNAME' | translate }}
+          <input ng-focus="vm.clearUser()" type="text" ng-model="vm.username">
+          <span
+            ng-if="vm.invalidUser === true && vm.userExists === false && vm.noUser === false"
+            style="font-size: 12px; color: red;"
+            translate >
+            MESSAGE.FORM.INVALID_USERNAME
+          </span>
+          <span
+            ng-if="vm.noUser === true && vm.userExists === false && vm.invalidUser === false"
+            style="font-size: 12px; color: red;"
+            translate >
+            MESSAGE.FORM.REQUIRED
+          </span>
+          <span
+            ng-if="vm.userExists === true"
+            style="font-size: 12px; color: red;"
+            translate >
+            MESSAGE.FORM.USERNAME_EXISTS
+          </span>
+        </label>
+        <label class="item item-input item-stacked-label">
+          {{ 'LABEL.PASSWORD' | translate }}
+          <input ng-focus="vm.clearPass()" type="password" ng-model="vm.password">
+          <span
+            ng-if="vm.noPass === true && vm.pwdMismatch === false"
+            style="font-size: 12px; color: red;"
+            translate >
+            MESSAGE.FORM.REQUIRED
+          </span>
+          <span
+            ng-if="vm.noPass === false && vm.invalidPass === true"
+            style="font-size: 12px; color: red;"
+            translate >
+            MESSAGE.FORM.PASSWORD_MIN_CHARS
+          </span>
+          <span
+            ng-if="vm.pwdMismatch === true && vm.invalidPass === false"
+            style="font-size: 12px; color: red;"
+            translate >
+            MESSAGE.FORM.PASSWORD_MATCH
+          </span>
+        </label>
+        <label class="item item-input item-stacked-label">
+          {{ 'LABEL.CONFIRM_PASSWORD' | translate }}
+          <input ng-focus="vm.clearConfirm()" type="password" ng-model="vm.confirm">
+          <span
+            ng-if="vm.noConfirm === true && vm.pwdMismatch === false"
+            style="font-size: 12px; color: red;"
+            translate >
+            MESSAGE.FORM.REQUIRED
+          </span>
+          <span
+            ng-if="vm.pwdMismatch === true"
+            style="font-size: 12px; color: red;"
+            translate >
+            MESSAGE.FORM.PASSWORD_MATCH
+          </span>
+        </label>
+      </div>    
+      <div style="margin-top: 10px;" class="padding">
+        <button ng-click="vm.register()" class="button button-block button-light button-custom" translate>
+          LABEL.REGISTER
+        </button>
+      </div>
+    </form>
+    <button ui-sref="app.login" style="margin: 0px;" class="button button-block button-clear button-light button-custom no-padding">
+      {{ 'LABEL.LOGIN' | translate }}
+    </button>    
+  </ion-content>
+</ion-view>

@@ -1,0 +1,42 @@
+<ion-modal-view class="full-modal">
+    <ion-header-bar>
+        <h1 class="title" translate>LABEL.SELECT_BUYER</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-radio
+                name="offers"
+                ng-repeat="offer in vm.offers"
+                ng-model="vm.buyer"
+                ng-value="'{{offer._id}}'"
+                ng-click="vm.uncheck(offer._id)"
+                class="item item-avatar {{ 'LAYOUT.RADIO_STYLE' | translate }}"
+                href="#" >
+                <img ng-if="vm.profile(offer.offerBy).profImageID === null" ng-src="{{ vm.profile(offer.offerBy).profImage }}">
+                <img ng-if="vm.profile(offer.offerBy).profImageID != null" ng-src="{{ vm.profileImg(offer.offerBy).link() }}">
+                <p>{{offer.buyer}}
+                    &nbsp;&nbsp;
+                    <i class="far fa-thumbs-up"></i> {{vm.profile(offer.offerBy).goodRating}}
+                    &nbsp;
+                    <i class="far fa-thumbs-down"></i> {{vm.profile(offer.offerBy).badRating}}  </p>
+                <h2
+                    ng-if="vm.priceAmount( offer.offerAmount, offer.currency )"
+                    translate="LABEL.CURRENCY_OFFER"
+                    translate-values="{ price: vm.priceAmount( offer.offerAmount, offer.currency ), currency: vm.baseCurrency }">
+                </h2>
+            </ion-radio>
+        </ion-list>
+        <div class="padding">
+            <button
+                    id="accept-user"
+                    nav-direction="forward"
+                    ng-disabled="!vm.buyer"
+                    ng-click="vm.acceptOffer()"
+                    class="button button-block button-light button-custom" 
+                    translate >
+                LABEL.ACCEPT_OFFER
+            </button>
+            <button ng-click="vm.closeOffer()" class="button button-block button-light button-outline button-modal">Cancel</button>
+        </div>
+    </ion-content>
+</ion-modal-view>

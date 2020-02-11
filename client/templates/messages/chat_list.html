@@ -1,0 +1,61 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+    <ion-nav-title>
+        <h1 class="title {{ 'LAYOUT.TITLE_STYLE' | translate }} click">
+          {{ 'LABEL.BUSINESS_CONVERSATIONS' | translate }}
+        </h1>
+    </ion-nav-title>
+
+    <ion-nav-buttons side="left">
+      <button 
+        ng-if="vm.language === 'ar'" 
+        class="button button-icon button-clear ion-android-more-vertical"
+        ng-click="links.show($event)">
+      </button>
+    </ion-nav-buttons>
+    
+    <ion-nav-buttons side="right">
+      <button 
+        ng-if="vm.language !== 'ar'" 
+        class="button button-icon button-clear ion-android-more-vertical"
+        ng-click="links.show($event)">
+      </button>
+    </ion-nav-buttons>
+    <!--
+  <ion-header-bar class="tabs-striped tabs-top tabs-light bar-subheader no-padding">
+    <tabs></tabs>
+  </ion-header-bar>
+  -->
+  <ion-content>
+    <ion-refresher
+        pulling-text="{{ 'LABEL.REFRESH' | translate }}"
+        on-refresh="refresh()"
+        disable-pulling-rotation="true" >
+    </ion-refresher>
+    <div ng-if="vm.chats.length != 0" ng-repeat="chat in vm.chats" class="list chat-list">
+      <a class="{{ 'LAYOUT.STYLE' | translate }} item item-avatar" ui-sref="app.chat({chatId: chat._id })" id="content-main">
+        <img ng-if="vm.otherUser(chat._id).profImageID === null" ng-src="{{ vm.otherUser(chat._id).profImage }}">
+        <img ng-if="vm.otherUser(chat._id).profImageID != null" ng-src="{{ vm.userImg(chat._id).link() }}">
+        <h2>{{ vm.otherUser(chat._id).profName }}</h2>
+        <p style="font-size: 10px; width: 50%;">{{chat.prodName}}</p>
+        <span ng-show="vm.unread(chat._id) != 0" class="badge badge-assertive">{{vm.unread(chat._id)}}</span>
+        <span class="{{ 'LAYOUT.STYLE' | translate }} chatlist-date">{{chat.latestMsg | calendar}}</span>
+      </a>
+    </div>
+    <ion-spinner ng-show="vm.chats.length === 0 && !vm.contentLoaded" class="search-spinner" icon="spiral"></ion-spinner>
+    <div ng-show="vm.chats.length === 0 && vm.contentLoaded" class="item no-posts">
+      <h3 id="content-main" translate="{{ vm.noPosts }}"></h3>
+    </div>
+    <ion-infinite-scroll
+    style="height: 0px;"
+    ng-if="vm.limit < vm.allchats"
+    spinner="spiral"
+    distance="1%"
+    on-infinite="loadMore()">
+    </ion-infinite-scroll>
+  </ion-content>
+
+  <ion-footer-bar class="tabs-striped tabs-bottom tabs-light no-padding shop-footer">
+    <tabs-bottom></tabs-bottom>
+  </ion-footer-bar>
+
+</ion-view>

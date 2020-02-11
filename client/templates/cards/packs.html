@@ -1,0 +1,211 @@
+<!--fichier de template des packs nb de produits alloués par pack et durée d'exposition des produits-->
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+
+    <ion-nav-title>
+        <h1 class="title {{ 'LAYOUT.TITLE_STYLE' | translate }}">{{ 'LABEL.PACKS' | translate }}</h1>
+    </ion-nav-title>
+
+  <ion-content>
+    <!--
+    <div class="pack-bar">
+      {{ 'LABEL.PACKS' | translate }}
+      <span ng-click="vm.showTip($event, 'others')" class="fa-stack pack-tooltip click">
+        <i class="fa fa-circle fa-stack-1x"></i>
+        <i class="fa positive fa-info-circle fa-stack-1x"></i>
+      </span>
+    </div>
+    -->
+
+    <div class="item card-subtitle">
+      <h3 style="overflow: visible;">
+        {{ 'LABEL.PACKS_SUBTITLE' | translate }}
+        <span ng-click="vm.showTip($event, 'others')" class="fa-stack card-tooltip click">
+          <i style="font-size: 1.5em; color: white;" class="fas fa-circle fa-stack-2x"></i>
+          <i style="font-size: 1.5em;" class="positive fas fa-info-circle fa-stack-2x"></i>
+        </span>
+      </h3>
+    </div>
+
+    <!-- Pack Selection Start -->
+
+    <div class="row pack-selection">
+        <div
+          class="card col click pack-card"
+          id="content-main"
+          ng-repeat="pack in vm.packs"
+          ng-class="{ selected: pack.selected, current: !pack.selected && vm.myPack.name === pack.name }"
+          ng-click="vm.selectPack($index)"
+          ng-if="$index <= 2">
+
+            <p class="item item-text-wrap">
+                <!--
+                <span
+                  ng-click="vm.showTip($event, 'star')"
+                  ng-if="pack.name === 'PACKS.STAR'"
+                  class="fa-stack fa-lg pack-tooltip-card click">
+
+                  <i class="fa light fa-circle fa-stack-1x"></i>
+                  <i class="fa positive fa-info-circle fa-stack-1x"></i>
+
+                </span>
+                -->
+
+                <span class="pack-title" translate>
+                  {{ pack.name }}
+                </span>
+
+                <br/>
+
+                <span
+                  translate="PACKS.LISTINGS"
+                  translate-values="{ limit: pack.listings }">
+                </span>
+
+            </p>
+
+            <div class="item item-image">
+                <img ng-src="{{ pack.image }}">
+            </div>
+            <p class="item item-text-wrap">
+                <span
+                  class="pack-expiry"
+                  ng-if="pack.expiryDays !== 0"
+                  translate="PACKS.EXPIRY"
+                  translate-values="{ expiry: pack.expiryDays }">
+                </span>
+                <span
+                  class="pack-expiry"
+                  ng-if="pack.expiryDays === 0"
+                  translate="PACKS.NO_EXPIRY">
+                </span>
+                <!--
+                <br />
+                <span
+                  ng-if="pack.store"
+                  translate="PACKS.HAS_STORE">
+                </span>
+                <span
+                  ng-if="!pack.store"
+                  translate="PACKS.NO_STORE">
+                </span>
+                -->
+                <br/>
+                <span
+                  class="pack-price"
+                  ng-if="!pack.selected && !pack.isFree && pack.price.amount && pack.price.currency"
+                  translate="LABEL.CURRENCY"
+                  translate-values="{ price: pack.price.amount, currency: pack.price.currency }">
+                </span>
+
+                <span
+                  class="pack-price"
+                  ng-if="!pack.selected && pack.isFree"
+                  translate>
+                  PACKS.FREE
+                </span>
+
+                <span class="pack-selected" ng-if="pack.selected">
+                  <i class="icon ion-checkmark"></i>
+                </span>
+            </p>
+
+        </div>
+    </div>
+
+    <div class="row pack-selection">
+        <div
+          class="card col click pack-card"
+          id="content-main"
+          ng-repeat="pack in vm.packs"
+          ng-class="pack.selected ? 'selected' : ''"
+          ng-click="vm.selectPack($index)"
+          ng-if="$index > 2">
+
+            <p class="item item-text-wrap">
+                <span class="pack-title" translate>
+                  {{ pack.name }}
+                </span>
+                <br/>
+                <span
+                  translate="PACKS.LISTINGS"
+                  translate-values="{ limit: pack.listings }">
+                </span>
+            </p>
+
+            <div class="item item-image">
+                <img ng-src="{{ pack.image }}">
+            </div>
+
+            <p class="item item-text-wrap pack-expiry">
+                <span
+                  class="pack-expiry"
+                  ng-if="pack.expiryDays !== 0"
+                  translate="PACKS.EXPIRY"
+                  translate-values="{ expiry: pack.expiryDays }">
+                </span>
+                <span
+                  class="pack-expiry"
+                  ng-if="pack.expiryDays === 0"
+                  translate="PACKS.NO_EXPIRY">
+                </span>
+                <!--
+                <br />
+                <span
+                  ng-if="pack.store"
+                  translate="PACKS.HAS_STORE">
+                </span>
+                <span
+                  ng-if="!pack.store"
+                  translate="PACKS.NO_STORE">
+                </span>
+                -->
+                <br/>
+                <span
+                  class="pack-price"
+                  ng-if="!pack.selected && !pack.isFree && pack.price.amount && pack.price.currency"
+                  translate="LABEL.CURRENCY"
+                  translate-values="{ price: pack.price.amount, currency: pack.price.currency }">
+                </span>
+
+                <span
+                  class="pack-price"
+                  ng-if="!pack.selected && pack.isFree"
+                  translate>
+                  PACKS.FREE
+                </span>
+
+                <span class="pack-selected" ng-if="pack.selected">
+                  <i class="icon ion-checkmark"></i>
+                </span>
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="item card-subtitle card-description">
+        <h3>
+          {{ 'LABEL.PACKS_DESCRIPTION' | translate }}
+        </h3>
+    </div>
+
+    <!-- Pack Selection End -->
+    <!--
+    <div class="padding">
+        <button
+          id="post-product"
+          ng-click="vm.applyPack()"
+          class="button button-block button-light button-custom"
+          translate >
+          LABEL.APPLY_PACK
+        </button>
+        <button
+          ui-sref="app.shop"
+          class="button button-block button-light button-outline button-custom"
+          translate >
+          LABEL.CANCEL
+        </button>
+      </div>
+      -->
+  </ion-content>
+</ion-view>

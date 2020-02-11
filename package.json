@@ -1,0 +1,52 @@
+{
+  "name": "vastershops",
+  "private": true,
+  "engines": {
+    "node": "8.11.4"
+  },
+  "scripts": {
+    "start": "meteor --settings settings.json",
+    "android": "rm -rf ./.meteor/local/cordova-build && meteor run android --settings settings.json",
+    "device": "rm -rf ./.meteor/local/cordova-build && meteor run android-device --settings settings.json",
+    "build": "rm -rf ./.meteor/local/cordova-build && rm -rf ../app_bundle && meteor build ../app_bundle --mobile-settings settings.json --server=https://vastershops-app.herokuapp.com",
+    "sign": "cd ../app_bundle/android/project/app/build/outputs/apk/release && jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 app-release-unsigned.apk souiqa",
+    "release": "cd ../app_bundle/android/project/app/build/outputs/apk/release && $ANDROID_HOME/build-tools/27.0.3/zipalign 4 app-release-unsigned.apk souiqa.apk",
+    "deploy": "git push heroku master",
+    "upload": "git add . && git commit -m 'update' && git push origin master",
+    "reset-billing": "adb shell pm clear com.android.vending",
+    "test-build": "rm -rf ./.meteor/local/cordova-build && rm -rf ../app_bundle && meteor build ../app_bundle --mobile-settings settings.json --server=http://192.168.1.19:3000",
+    "install-apk": "adb install ../app_bundle/android/project/build/outputs/apk/release/Soouiqa.apk"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.5",
+    "angular-elastic": "^2.5.1",
+    "autolinker": "^3.11.1",
+    "flushwritable": "^1.0.0",
+    "graceful-fs": "^4.1.15",
+    "gridfs-stream": "^1.1.1",
+    "in-app-purchase": "^1.11.4",
+    "json-stringify-safe": "^5.0.1",
+    "knox-s3": "^0.9.5",
+    "meteor-node-stubs": "^0.2.11",
+    "moment": "^2.24.0",
+    "ng-file-upload": "^12.2.13",
+    "node-geocoder": "^3.25.0",
+    "node-uuid": "^1.4.8",
+    "npm": "^6.13.0",
+    "paypal-rest-sdk": "^1.8.1",
+    "protractor": "^5.4.2",
+    "request": "^2.88.0",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0",
+    "babel-plugin-angularjs-annotate": "^0.8.2",
+    "cordova-android-firebase-gradle-release": "^3.0.0",
+    "cordova-custom-config": "^5.1.0"
+  },
+  "babel": {
+    "plugins": [
+      "angularjs-annotate"
+    ]
+  }
+}

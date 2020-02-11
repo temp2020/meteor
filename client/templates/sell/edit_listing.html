@@ -1,0 +1,280 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+     <ion-nav-title>
+        <h1 class="title">{{ 'LABEL.EDIT_LISTING' | translate }}</h1>
+    </ion-nav-title>
+  <ion-content class="white">
+    <div class="list">
+      <!-- Upload Photo - Preview -->
+      <div id="content-main" ng-if="vm.preview.length > 0" style="padding-right: 12px; padding-left: 12px;" class="item no-border">
+        <div class="row no-padding">
+          <div
+              ng-class="vm.imgSelect.indexOf($index) > -1 ? 'upload-select' : 'upload-preview'"
+              class="col col-25 no-padding"
+              style="height: 100%; line-height: 0px; margin-left: 1px; margin-right: 1px;"
+              ng-click="vm.selectImg($index)"
+              ng-repeat="upload in vm.preview" >
+            <img ng-if="upload.url !== null" style="width: 100%" ng-src="{{upload.url}}">
+            <img ng-if="upload.url === null" style="width: 100%" ng-src="{{ vm.uploadedPreview(upload.id).link() }}">
+          </div>
+      <!-- Upload Photo - With Uploads -->
+          <div id="content-main" ng-if="vm.preview.length < 4" class="col col-25 no-padding" style="margin-left: 1px; text-align: center;">
+            <div
+                ng-show="vm.uploadOption === 'Camera' || !vm.uploadOption"
+                ng-if="vm.isApp === true"
+                class="button button-block button-stable upload-btn upload-btn-sm"
+                ng-click="!vm.uploadOption ? vm.setOptions() : vm.addCamera()" >
+              <i class="icon ion-android-camera"></i>
+            </div>
+            <div
+                ng-show="vm.uploadOption === 'Files'"
+                ng-if="vm.isApp === true && vm.isAndroid4 === true"
+                class="button button-block button-stable upload-btn upload-btn-sm"
+                ng-click="!vm.uploadOption ? vm.setOptions() : vm.addFile()" >
+              <i class="icon ion-android-camera"></i>
+            </div>
+            <div
+                ngf-select
+                id="addImg"
+                ng-show="vm.isApp === false || vm.uploadOption === 'Files'"
+                ng-if="vm.isApp === false || (vm.isApp === true && vm.isAndroid4 === false)"
+                ngf-change="vm.addImg($files)"
+                class="button button-block button-stable upload-btn upload-btn-sm"
+                ngf-multiple="false"
+                ngf-allow-dir="false"
+                ngf-resize="{width: 800, height: 800, quality: .7}"
+                ngf-accept="'image/*'" >
+              <i class="icon ion-android-camera"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Upload Photo - No Uploads -->
+      <div id="content-main" ng-if="vm.preview.length === 0" class="item no-border" style="text-align: center;">
+        <div
+            ng-show="vm.uploadOption === 'Camera' || !vm.uploadOption"
+            ng-if="vm.isApp === true"
+            ng-class="vm.noUpload === true ? 'required' : ''"
+            class="button button-block button-stable upload-btn"
+            ng-click="!vm.uploadOption ? vm.setOptions() : vm.addCamera()" >
+          <i class="icon ion-android-camera"></i>
+          <br >
+          {{ 'LABEL.ADD_PHOTO' | translate }}
+        </div>
+        <div
+            ng-show="vm.uploadOption === 'Files'"
+            ng-if="vm.isApp === true && vm.isAndroid4 === true"
+            ng-class="noUpload === true ? 'required' : ''"
+            class="button button-block button-stable upload-btn"
+            ng-click="!vm.uploadOption ? vm.setOptions() : vm.addFile()" >
+          <i class="icon ion-android-camera"></i>
+          <br >
+          {{ 'LABEL.ADD_PHOTO' | translate }}
+        </div>
+        <div
+            ngf-select
+            id="addImg"
+            ng-show="vm.isApp === false || vm.uploadOption === 'Files'"
+            ng-if="vm.isApp === false || (vm.isApp === true && vm.isAndroid4 === false)"
+            ngf-change="vm.addImg($files)"
+            ng-class="vm.noUpload === true ? 'required' : ''"
+            class="button button-block button-stable upload-btn"
+            ngf-multiple="false"
+            ngf-allow-dir="false"
+            ngf-resize="{width: 800, height: 800, quality: .7}"
+            ngf-accept="'image/*'" >
+            <i class="icon ion-android-camera"></i>
+          <br >
+          {{ 'LABEL.ADD_PHOTO' | translate }}
+        </div>
+      </div>
+      <!-- Upload Photo Options -->
+      <div ng-if="vm.isApp === true" ng-click="vm.setOptions()" class="item item-input no-border no-margin no-padding">
+        <span class="input-label" style="font-size: 12px; color: #234311; padding-left: 10px;">
+          <i class="fas fa-cog fa-lg"></i> {{ 'LABEL.PHOTO_OPTIONS' | translate }}
+        </span>
+      </div>
+      <!-- Listing Name -->
+      <label class="item item-input no-border">
+        <span ng-class="vm.noTitle === true ? 'required' : ''" class="input-label">
+          <i class="icon ion-android-phone-portrait"></i>
+        </span>
+        <input
+            ng-class="vm.noTitle === true ? 'required-form' : 'text-form'"
+            ng-model="vm.post.title"
+            type="text"
+            translate
+            translate-attr-placeholder="LABEL.TITLE" />
+      </label>
+      <!--My Location-->
+      <label class="item item-input no-border">
+        <span class="input-label" translate>
+          LABEL.MY_LOCATION
+        </span>
+        <input
+            class="text-form click"
+            style="background-color: #fff;"
+            ng-model="vm.sellerLocation"
+            ng-keypress="vm.getLocation()"
+            ng-click="vm.getLocation()"
+            type="text"
+            translate
+            translate-attr-placeholder="LABEL.GET_LOCATION"
+            readonly />
+      </label>
+      <!-- Condition -->
+      <label class="item item-input item-stacked-label no-border item-specs">
+        <span
+          style="padding-bottom: 4px; padding-left: 6px;"
+          ng-class="vm.noCond === true ? 'required' : ''"
+          class="input-label"
+          translate >
+          LABEL.CONDITION
+        </span>
+        <div class="button-bar">
+          <ion-radio
+              class="specs-radio {{ 'LAYOUT.STYLE' | translate }}"
+              icon="none"
+              ng-model="vm.condition"
+              ng-value="'DATA.PRODUCT'"
+              name="condition" >
+            {{ 'DATA.PRODUCT' | translate }}
+          </ion-radio>
+
+          <ion-radio
+              class="specs-radio {{ 'LAYOUT.STYLE' | translate }}"
+                icon="none"
+              ng-model="vm.condition"
+              ng-value="'DATA.SERVICE'"
+              name="condition" >
+            {{ 'DATA.SERVICE' | translate }}
+          </ion-radio>
+          <ion-radio
+              class="specs-radio {{ 'LAYOUT.STYLE' | translate }}"
+              icon="none"
+              ng-model="vm.condition"
+              ng-value="'DATA.B2B'"
+              name="condition" >
+            {{ 'DATA.REQUEST' | translate }}
+          </ion-radio>
+        </div>
+      </label>
+
+      <!-- Condition -->
+      <label class="item item-input item-stacked-label no-border item-specs">
+          <div class="button-bar">
+            <ion-radio
+                class="specs-radio {{ 'LAYOUT.STYLE' | translate }}"
+                icon="none"
+                ng-model="vm.conditionType"
+                ng-value="'DATA.B2B'"
+                name="condition-type" >
+                {{ 'DATA.B2B' | translate }}
+            </ion-radio>
+
+            <ion-radio
+              class="specs-radio {{ 'LAYOUT.STYLE' | translate }}"
+              icon="none"
+              ng-model="vm.conditionType"
+              ng-value="'DATA.B2C'"
+              name="condition-type" >
+              {{ 'DATA.B2C' | translate }}
+            </ion-radio>
+
+            <ion-radio
+                class="specs-radio {{ 'LAYOUT.STYLE' | translate }}"
+                  icon="none"
+                ng-model="vm.conditionType"
+                ng-value="'DATA.C2B'"
+                name="condition-type" >
+                {{ 'DATA.C2B' | translate }}
+            </ion-radio>
+          </div>
+        </label>
+
+      <!-- Price -->
+      <label style="padding-top: 8px;" class="item item-input no-border">
+        <span ng-class="vm.noPrice === true ? 'required' : ''" class="input-label" translate>
+          {{ vm.post.currency }}
+        </span>
+        <input
+            ng-class="vm.noPrice === true ? 'required-form' : 'text-form'"
+            class="text-form"
+            ng-model="vm.price"
+            type="tel"
+            translate
+            translate-attr-placeholder="LABEL.SELLING_PRICE" />
+      </label>
+      <!-- Location -->
+      <label style="padding-top: 8px;" class="item item-input no-border">
+        <span ng-class="vm.noLocation === true ? 'required' : ''" class="input-label"><i class="fas fa-street-view" aria-hidden="true"></i></span>
+          <input
+              ng-class="vm.noLocation === true ? 'required-form' : 'text-form'"
+              class="text-form"
+              ng-model="vm.post.meetLocation"
+              type="text"
+              placeholder="Meeting Location" />
+      </label>
+      <!-- Details -->
+      <label style="padding-top: 8px;" class="item item-input item-stacked-label no-border">
+        <i class="fas fa-info" aria-hidden="true"></i>
+        <span class="input-label" translate>LABEL.DETAILS</span>
+        <textarea
+            class="text-form"
+            ng-model="vm.postNotes"
+            row="3"
+            msd-elastic
+            style="resize: none; height: 61px; width: 100%; overflow:hidden;"
+            type="text"
+            translate
+            translate-attr-placeholder="LABEL.DETAILS_PLACEHOLDER">
+        </textarea>
+      </label>
+
+      <!-- More Details -->
+      <label style="padding-top: 8px;" class="item item-input item-stacked-label no-border">
+        <i class="far fa-comment-dots" aria-hidden="true"></i>
+          <span class="input-label" translate>LABEL.MORE_DETAILS</span>
+          <textarea
+              class="text-form"
+              ng-model="vm.moreDetails"
+              row="3"
+              msd-elastic
+              style="resize: none; height: 61px; width: 100%; overflow:hidden;"
+              type="text"
+              translate
+              translate-attr-placeholder="LABEL.MORE_DETAILS_FIELD">
+          </textarea>
+        </label>
+
+    </div>
+    <!-- Submit -->
+    <div class="padding">
+      
+      <button ng-click="vm.updatePost()" class="button button-block button-light button-custom" translate>
+        LABEL.UPDATE
+      </button>
+
+      <button 
+        ng-if="vm.post.isPublished" 
+        ng-click="vm.unpublish()" 
+        class="button button-block button-light button-outline button-custom" 
+        translate>
+        LABEL.UNPUBLISH
+      </button>
+
+      <button ng-click="vm.cancel()" class="button button-block button-light button-outline button-custom" translate>
+        LABEL.CANCEL
+      </button>
+
+    </div>
+  </ion-content>
+  <ion-footer-bar
+      ng-if="vm.imgSelect.length > 0"
+      ng-click="vm.removeUpload()"
+      align-title="center"
+      class="bar-assertive" >
+    <h1 class="title">
+      <i class="far fa-trash-alt fa-lg"></i> {{ 'LABEL.REMOVE_PHOTO' | translate }}
+    </h1>
+  </ion-footer-bar>
+</ion-view>

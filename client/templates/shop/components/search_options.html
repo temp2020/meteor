@@ -1,0 +1,104 @@
+<ion-modal-view style="width: 100%; height: 100%; top: 0px; bottom: 0px; right: 0px; left: 0px;">
+    <ion-header-bar>
+        <h1 class="title" translate>LABEL.SEARCH_OPTIONS</h1>
+        <button ng-click="vm.hideOptions()" class="button icon ion-close click"></button>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list id="search-option">
+            <!-- Sort Options -->
+            <div class="item item-divider {{ 'LAYOUT.STYLE' | translate }}" translate>
+                LABEL.SORT
+            </div>
+            <ion-radio name="sort" class="{{ 'LAYOUT.RADIO_STYLE' | translate }}" ng-model="vm.sort" ng-value="'distance'">
+                {{ 'LABEL.DISTANCE_SORT' | translate }}
+            </ion-radio>
+            <ion-radio name="sort" class="{{ 'LAYOUT.RADIO_STYLE' | translate }}" ng-model="vm.sort" ng-value="'date'">
+                {{ 'LABEL.LATEST' | translate }}
+            </ion-radio>
+            <ion-radio name="sort" class="{{ 'LAYOUT.RADIO_STYLE' | translate }}" ng-model="vm.sort" ng-value="'priceMin'">
+                {{ 'LABEL.PRICE_MIN_TO_MAX' | translate }}
+            </ion-radio>
+            <ion-radio name="sort" class="{{ 'LAYOUT.RADIO_STYLE' | translate }}" ng-model="vm.sort" ng-value="'priceMax'">
+                {{ 'LABEL.PRICE_MAX_TO_MIN' | translate }}
+            </ion-radio>
+            <!-- Filter Options -->
+            <div class="item item-divider {{ 'LAYOUT.STYLE' | translate }}" translate>
+                LABEL.FILTER
+            </div>
+            <label class="item item-input search-filter {{ 'LAYOUT.STYLE' | translate }}">
+                <span class="input-label" translate>LABEL.DISTANCE</span>
+                <input
+                    ng-model="vm.distance"
+                    type="tel"
+                    translate
+                    translate-attr-placeholder="LABEL.MAX_DISTANCE">
+            </label>
+            <label class="item item-input search-filter {{ 'LAYOUT.STYLE' | translate }}">
+                <span class="input-label" translate>LABEL.MIN_PRICE</span>
+                <input
+                    ng-model="vm.minPrice"
+                    type="tel"
+                    translate
+                    translate-attr-placeholder="LABEL.MIN_AMOUNT">
+            </label>
+            <label class="item item-input search-filter {{ 'LAYOUT.STYLE' | translate }}">
+                <span class="input-label" translate>LABEL.MAX_PRICE</span>
+                <input
+                    ng-model="vm.maxPrice"
+                    type="tel"
+                    translate
+                    translate-attr-placeholder="LABEL.MAX_AMOUNT">
+            </label>
+            <!--
+            <ion-checkbox
+                name="currency"
+                class="{{ 'LAYOUT.CHECKBOX_STYLE' | translate }}"
+                ng-model="vm.sameCurrency">
+                {{ 'LABEL.SAME_CURRENCY' | translate }}
+            </ion-checkbox>
+            -->
+            <div class="item item-divider {{ 'LAYOUT.STYLE' | translate }}" translate>
+                LABEL.TYPE
+            </div>
+
+            <ion-checkbox
+                name="condition"
+                ng-repeat="cond in vm.condition"
+                class="{{ 'LAYOUT.CHECKBOX_STYLE' | translate }}"
+                ng-model="cond.selected">
+                {{ cond.value | translate }}
+            </ion-checkbox>
+
+            <!--
+            <ion-checkbox name="condition" ng-model="vm.condition.selected">
+                {{ 'DATA.PRODUCT' | translate }}
+            </ion-checkbox>
+            <ion-checkbox name="condition" ng-model="vm.condition.selected">
+                {{ 'DATA.SERVICE' | translate }}
+            </ion-checkbox>
+            <ion-checkbox name="condition" ng-model="vm.condition.selected">
+                {{ 'DATA.B2B' | translate }}
+            </ion-checkbox>
+              -->
+
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="button-bar footer-prod">
+            <div class="button-bar">
+              <button
+                  ng-click="vm.hideOptions()"
+                  class="button button-light button-outline"
+                  style="font-size: 14px; padding: 0px; border-right-width: 1px;" >
+
+                <p class="prod-footer-label" translate>LABEL.CANCEL</p>
+              </button>
+              <button
+                  class="button button-light"
+                  ng-click="vm.setOptions()"
+                  style="font-size: 14px; padding: 0px;" >
+
+                <p class="prod-footer-label" translate>LABEL.SEARCH_MENU</p>
+              </button>
+            </div>
+          </ion-footer-bar>
+</ion-modal-view>

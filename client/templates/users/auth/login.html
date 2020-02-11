@@ -1,0 +1,48 @@
+<ion-view class="{{ 'LAYOUT.STYLE' | translate }}">
+  <ion-nav-title>
+    <h1 class="title"></h1>
+  </ion-nav-title>
+
+  <ion-content class="white">
+
+    <!--
+    <div style="padding-bottom: 5px;" class="padding">
+      <button id="signin" ng-click="vm.loginGoogle()" style="margin: 0px; color: #331212; border-color: #331212;" class="button button-block button-outline button-assertive">
+        <i class="fab fa-google-plus-g fa-lg"></i>&nbsp;&nbsp;{{ 'LABEL.LOGIN_GOOGLE' | translate }}
+      </button>
+    </div>
+    <div style="padding-bottom: 20px;" class="padding">
+      <button id="signin" ng-click="vm.loginFB()" style="margin: 0px; color: #331212; border-color: #331212;" class="button button-block button-outline button-positive">
+        <i class="fab fa-facebook-f fa-lg"></i>&nbsp;&nbsp;{{ 'LABEL.LOGIN_FACEBOOK' | translate }}
+      </button>
+    </div>
+    -->
+
+    <form ng-submit="vm.login()" style="margin-top:28px;">
+      <div class="list no-margin">
+        <label class="item item-input item-stacked-label">
+          {{ 'LABEL.USERNAME_EMAIL' | translate }}
+          <input type="text" ng-model="vm.user">
+        </label>
+        <label class="item item-input item-stacked-label">
+          {{ 'LABEL.PASSWORD' | translate }}
+          <input type="password" ng-model="vm.password">
+        </label>
+      </div>
+      <div class="padding">
+        <button ng-click="vm.login()" class="button button-block button-light button-custom">
+		 <i class="fas fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;{{ 'LABEL.LOGIN_Fostershops' | translate }}
+          </button>
+      </div>
+    </form>
+    <button ui-sref="app.register" style="margin: 0px;" class="button button-block button-clear button-light button-custom no-padding" translate>
+      LABEL.REGISTER
+    </button>
+    <button ui-sref="app.forgot" style="margin: 0px; text-decoration: underline;" class="button button-small button-block button-clear button-light button-custom no-padding" translate>
+      LABEL.FORGOT_PASSWORD
+    </button>
+  </ion-content>
+  <ion-footer-bar class="tabs-striped tabs-bottom tabs-light no-padding shop-footer">
+      <tabs-bottom></tabs-bottom>
+  </ion-footer-bar>
+</ion-view>
