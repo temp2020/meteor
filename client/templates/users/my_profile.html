@@ -45,6 +45,9 @@
         <i class="icon ion-gear-b"></i>&nbsp;
         {{ 'LABEL.ACCOUNT_SETTINGS' | translate }}
       </button>
+      <ion-toggle ng-model="isBottomBar" ng-change="toggleBottomBar($event)">
+        Bottom Bar
+      </ion-toggle>
         <!-- Feedback -->
       <div class="list no-margin">
         <div ng-repeat="post in vm.feedback" class="item item-avatar">
@@ -79,7 +82,8 @@
           on-infinite="loadMore()">
       </ion-infinite-scroll>
     </ion-content>
-    <ion-footer-bar class="tabs-striped tabs-bottom tabs-light no-padding shop-footer">
+    <ion-footer-bar ng-show="isBottomBar === true"
+      class="tabs-striped tabs-bottom tabs-light no-padding shop-footer">
         <tabs-bottom></tabs-bottom>
-    </ion-footer-bar>
+    </ion-footer-bar >
 </ion-view>

@@ -24,6 +24,10 @@ function myProfCtrl (
   self.loaded = 10;
   self.limit = self.loaded;
 
+  
+  $scope.toggleBottomBar = function($event) {
+    $rootScope.isBottomBar = !$rootScope.isBottomBar; //Using glboal variable to toggle bottom bar
+  };
   this.subscribe('myProfile', () => [], {
     onReady: function() {
       $ionicLoading.hide();

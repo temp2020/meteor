@@ -1,26 +1,29 @@
-<!-- ce fichier est celui des popups du tab + plus --> 
+<!-- ce fichier est celui des popups du tab + plus -->
 <ion-popover-view style="height: 270px; max-width: 210px;">
   <ion-content scroll="false">
     <ul class="list no-margin {{ 'LAYOUT.STYLE' | translate }}">
       <div class="item click" ui-sref="app.myStore" ng-click="links.hide()">
-            {{ 'LABEL.MY_STORE' | translate }}
-         </div>
+        {{ 'LABEL.MY_STORE' | translate }}
+      </div>
       <div class="item click" ui-sref="app.myoffers" ng-click="links.hide()">
         {{ 'LABEL.OFFERS_RECEIVED' | translate }}
         &nbsp;&nbsp;
         <span ng-if="menu.unreadOffers > 0" class="badge badge-assertive nav-badge">+{{ menu.unreadOffers }}</span>
-        </div>
+      </div>
       <div class="item click" ui-sref="app.chatlist" ng-click="links.hide()">
         {{ 'LABEL.BUSINESS_CONVERSATION_TITLE' | translate }}
         &nbsp;&nbsp;
         <span ng-if="menu.unreadMsg > 0" class="badge badge-assertive nav-badge">+{{ menu.unreadMsg }}</span>
-        </div>
-      <div class="item click" ui-sref="app.sell" ng-click="hidePopover($event)">
-          {{ 'LABEL.PACKS' | translate }}
-        </div>
+      </div>
+      <div class="item click" ui-sref="app.packs" ng-if="isBottomBar === true" ng-click="links.hide()">
+        {{ 'LABEL.PACKS' | translate }}
+      </div>
       <div class="item click" ui-sref="app.pubCards" ng-click="links.hide()">
-          {{ 'LABEL.PUBLICATION_CARDS' | translate }}
-        </div>
-          </ul>
+        {{ 'LABEL.PUBLICATION_CARDS' | translate }}
+      </div>
+      <div class="item click" ui-sref="app.myprofile" ng-show="isBottomBar !== true" ng-click="links.hide()">
+        {{ 'LABEL.PROFILE' | translate }}
+      </div>
+    </ul>
   </ion-content>
 </ion-popover-view>

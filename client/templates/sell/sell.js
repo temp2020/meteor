@@ -30,8 +30,6 @@ angular
     //Variable for pagination.
     self.paginate = false;
     this.newFile;
-    //Variable for profile;
-    self.showProfile = false;
 
     //Variables for infinite scroll.
     self.options = {
@@ -46,10 +44,6 @@ angular
       $scope.links = popover;
     });
 
-    $scope.hidePopover = function($event) {
-      $scope.links.hide();
-      $scope.showProfile = !$scope.showProfile;
-   };
 
     //Get count of all posts in server.
     //Method is located at tapshop/lib/methods/app_methods.js
