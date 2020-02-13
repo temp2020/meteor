@@ -15,7 +15,7 @@
         &nbsp;&nbsp;
         <span ng-if="menu.unreadMsg > 0" class="badge badge-assertive nav-badge">+{{ menu.unreadMsg }}</span>
         </div>
-      <div class="item click" ui-sref="app.packs" ng-click="links.hide()">
+      <div class="item click" ui-sref="app.sell" ng-click="hidePopover($event)">
           {{ 'LABEL.PACKS' | translate }}
         </div>
       <div class="item click" ui-sref="app.pubCards" ng-click="links.hide()">

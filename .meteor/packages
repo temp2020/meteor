@@ -29,7 +29,7 @@ chrismbeckett:toastr
 jonblum:jquery-cropper
 
 # accounts
-accounts-password@1.5.1
+accounts-password@1.5.2
 accounts-google@1.3.3
 accounts-facebook@1.3.2
 service-configuration@1.0.11
@@ -38,7 +38,7 @@ splendido:accounts-meld
 mizzao:user-status
 
 # data
-mongo@1.7.0
+mongo@1.8.0
 meteorhacks:search-source
 reywood:publish-composite
 ostrio:files
